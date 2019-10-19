@@ -23,7 +23,7 @@
 
   <actions>
     <!-- Add your actions here -->
-    <action id="intern" class="com.youdao.ui.InternAction" text="easyintern">
+    <action id="intern" class="com.youdao.ui.InternAction" text="Easyintern">
       <add-to-group group-id="ToolsMenu" anchor="first"/>
     </action>
   </actions>
