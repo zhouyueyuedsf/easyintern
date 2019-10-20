@@ -51,7 +51,7 @@ public class ExcelUtil {
     private static Vector<Vector<String>> readExcel2VectorHandler(Workbook workbook, int startCol, int endCol, int startRow,
                                                                   int endRow, int sheetIndex) {
         Vector<Vector<String>> vector = new Vector<>();
-        Sheet sheet = workbook.getSheetAt(sheetIndex);
+         Sheet sheet = workbook.getSheetAt(sheetIndex);
         long maxRow = sheet.getLastRowNum() > endRow ?
                 ((long) endRow) : sheet.getLastRowNum();
 
@@ -60,7 +60,7 @@ public class ExcelUtil {
             Row row = sheet.getRow(i);
             if (null == row)
                 continue;
-            long maxCol = row.getRowNum() > endCol ? endCol : sheet.getLastRowNum();
+            long maxCol = row.getLastCellNum() > endCol ? endCol : row.getLastCellNum();
             for (int j = startCol; j < maxCol; j++) {
                 String val = Converter.getCellValue(row.getCell(j));
                 rows.add(val);

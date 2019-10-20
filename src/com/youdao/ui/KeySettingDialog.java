@@ -21,7 +21,7 @@ public class KeySettingDialog extends JDialog {
     private JButton buttonFinish;
     private JButton buttonPre;
     private JBTable tableKeySetting;
-    private TableDataModel dataModel;
+    private TableDataModel dataModel = new TableDataModel();
     private KeySettingTableAdapter adapter;
     private ConfigModel config;
     private static HashMap<String, String> abbrMap;
@@ -43,54 +43,83 @@ public class KeySettingDialog extends JDialog {
         ExcelUtil.readSpecialArea(configModel, new ModelGenCallBack() {
             @Override
             public void onSuccess(TableDataModel settingTableModel) {
-                dataModel = settingTableModel;
+                transposed(settingTableModel.data, dataModel.data);
                 int rowCount = config.includeHead ? dataModel.data.size() - 1: dataModel.data.size();
                 Vector<String> keyVector = new Vector<>();
-                Vector<String> englishVector = new Vector<>();
                 int englishIndex = config.englishNum - config.validArea.startCol;
-
-                int count = 0;
-                for (Vector<String> rows : dataModel.data) {
-                    if (config.includeHead && count == 0) {
-                        count++;
-                        continue;
-                    }
-                    String english = rows.get(englishIndex);
-                    englishVector.add(rows.get(englishIndex));
+                Vector<String> englishVector = null;
+                Vector<String> tempEnglishVector = dataModel.data.get(englishIndex);
+                if (configModel.includeHead) {
+                    englishVector = new Vector<>(tempEnglishVector.subList(1, tempEnglishVector.size()));
+                } else  {
+                    englishVector = tempEnglishVector;
                 }
+//                int count = 0;
+//                for (Vector<String> rows : dataModel.data) {
+//                    if (config.includeHead && count == 0) {
+//                        count++;
+//                        continue;
+//                    }
+//                    String english = rows.get(englishIndex);
+//                    englishVector.add(rows.get(englishIndex));
+//                }
                 int arrStartRow = config.stringArrayArea.startRow;
                 int arrEndRow = config.stringArrayArea.endRow;
                 int arrAnchorRow = (arrStartRow + arrEndRow) / 2;
                 for (int i = 0; i < englishVector.size(); i++) {
-                    Vector<String> vector = dataModel.data.get(i);
-                    if (i > arrStartRow && i < arrEndRow) {
-                        if (i == arrAnchorRow) {
-                            vector.add(0, "请在此处填写string array的key值");
-                            continue;
-                        }
-                        vector.add(0, "");
-                        // todo 设置下划线
-//                        tableKeySetting.getCellEditor()
-                    }
-                    String english = englishVector.get(i);
-                    String[] keyString = english.split("");
-                    StringBuilder keyBuilder = new StringBuilder();
-                    for (int j = 0; j < 3; j++) {
-                        keyBuilder.append(keyString[j]);
-                    }
-                    String key = keyBuilder.toString();
-                    dataModel.data.get(i).add(0, key);
-                }
-
-                for (int i = 0; i < dataModel.data.size(); i++) {
-                    if (config.includeHead && i == 0) {
+                    if (configModel.includeHead && i == 0) {
                         continue;
                     }
-                    Vector<String> vector = dataModel.data.get(i);
-                    keyVector.add(vector.get(0));
+                    if (i > arrStartRow && i < arrEndRow) {
+                        if (i == arrAnchorRow) {
+                            keyVector.add("请在此处填写string array的key值");
+                            continue;
+                        }
+                        keyVector.add(0, "");
+                        // todo 设置下划线
+//                        tableKeySetting.getCellEditor()
+                    } else{
+                        String english = englishVector.get(i);
+                        String[] keyString = english.split("");
+                        StringBuilder keyBuilder = new StringBuilder();
+                        for (int j = 0; j < 3; j++) {
+                            keyBuilder.append(keyString[j]);
+                        }
+                        String key = keyBuilder.toString();
+                        keyVector.add(english);
+                    }
                 }
-                adapter.addColumn("string key", keyVector);
-                adapter.addColumn("string english value", englishVector);
+                dataModel.data.add(0, keyVector);
+//                for (int i = 0; i < englishVector.size(); i++) {
+//                    Vector<String> vector = dataModel.data.get(i);
+//                    if (i > arrStartRow && i < arrEndRow) {
+//                        if (i == arrAnchorRow) {
+//                            vector.add(0, "请在此处填写string array的key值");
+//                            continue;
+//                        }
+//                        vector.add(0, "");
+//                        // todo 设置下划线
+////                        tableKeySetting.getCellEditor()
+//                    }
+//                    String english = englishVector.get(i);
+//                    String[] keyString = english.split("");
+//                    StringBuilder keyBuilder = new StringBuilder();
+//                    for (int j = 0; j < 3; j++) {
+//                        keyBuilder.append(keyString[j]);
+//                    }
+//                    String key = keyBuilder.toString();
+//                    dataModel.data.get(i).add(0, key);
+//                }
+
+//                for (int i = 0; i < dataModel.data.size(); i++) {
+//                    if (config.includeHead && i == 0) {
+//                        continue;
+//                    }
+//                    Vector<String> vector = dataModel.data.get(i);
+//                    keyVector.add(vector.get(0));
+//                }
+                adapter.addColumn("string key", dataModel.data.get(0));
+                adapter.addColumn("string english value", dataModel.data.get(englishIndex));
                 tableKeySetting.setModel(adapter);
             }
         });
@@ -131,26 +160,16 @@ public class KeySettingDialog extends JDialog {
         String outPutPath = config.inputFilePath;
 
         if (config.includeHead) {
-            Vector<Vector> matrixData = adapter.getDataVector();
+            Vector<Vector<String>> matrixData = dataModel.data;
             Vector<Vector<String>> outputData = new Vector<>();
-            int count = 0;
-            int colNum = matrixData.get(0).size();
-            int rowNum = matrixData.size();
-            for (int i = 0; i < colNum; i++) {
-                Vector v = new Vector<String>(rowNum);
-                for (int j = 0; j < rowNum; j++) {
-                    Vector oldc = matrixData.get(j);
-                    v.add(j, (String)oldc.get(i));
-                }
-                outputData.add(i, v);
-            }
+            transposed(matrixData, outputData);
             int arrStart = config.stringArrayArea.startRow;
             int arrEnd = config.stringArrayArea.endRow;
             int arrAnchor = (arrStart + arrEnd) / 2;
             for (int i = 0; i < outputData.size(); i++) {
                 Vector<String> langVector = outputData.get(i);
                 String abbr = abbrMap.get(langVector.get(0));
-                File newFile = new File(outPutPath + "strings-" + "abbr.xml");
+                File newFile = new File(outPutPath + "/strings-" + abbr +"xml");
                 try {
                     for (int j = 1; j < langVector.size(); j++) {
                         if (j > arrStart && j < arrEnd) {
@@ -177,6 +196,26 @@ public class KeySettingDialog extends JDialog {
         }
 
         dispose();
+    }
+
+    /**
+     * 转置矩阵
+     *
+     * @param matrixData
+     * @param outputData
+     */
+    private void transposed(Vector<Vector<String>> matrixData, Vector<Vector<String>> outputData) {
+        int count = 0;
+        int colNum = matrixData.get(0).size();
+        int rowNum = matrixData.size();
+        for (int i = 0; i < colNum; i++) {
+            Vector v = new Vector<String>(rowNum);
+            for (int j = 0; j < rowNum; j++) {
+                Vector oldc = matrixData.get(j);
+                v.add(j, (String)oldc.get(i));
+            }
+            outputData.add(i, v);
+        }
     }
 
     private void onCancel() {
