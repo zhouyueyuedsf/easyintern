@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Vector;
 
 public class KeySettingDialog extends JDialog {
+    private static final int MAX_LEN = 4;
     private JPanel contentPane;
     private JButton buttonFinish;
     private JButton buttonPre;
@@ -80,13 +81,16 @@ public class KeySettingDialog extends JDialog {
 //                        tableKeySetting.getCellEditor()
                     } else{
                         String english = englishVector.get(i);
-                        String[] keyString = english.split("");
+                        String[] keyString = english.split(" ");
                         StringBuilder keyBuilder = new StringBuilder();
-                        for (int j = 0; j < 3; j++) {
+                        int len = keyString.length;
+                        int maxLen = Math.min(len, MAX_LEN);
+                        for (int j = 0; j < maxLen - 1; j++) {
                             keyBuilder.append(keyString[j]);
+                            keyBuilder.append("_");
                         }
-                        String key = keyBuilder.toString();
-                        keyVector.add(english);
+                        keyBuilder.append(keyString[maxLen - 1]);
+                        keyVector.add(keyBuilder.toString());
                     }
                 }
                 dataModel.data.add(0, keyVector);
@@ -119,7 +123,7 @@ public class KeySettingDialog extends JDialog {
 //                    keyVector.add(vector.get(0));
 //                }
                 adapter.addColumn("string key", dataModel.data.get(0));
-                adapter.addColumn("string english value", dataModel.data.get(englishIndex));
+                adapter.addColumn("string english value", dataModel.data.get(englishIndex + 1));
                 tableKeySetting.setModel(adapter);
             }
         });
