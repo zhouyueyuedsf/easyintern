@@ -9,6 +9,9 @@ import com.intellij.openapi.ui.TextBrowseFolderListener;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.youdao.model.ConfigModel;
 
+import javax.swing.*;
+import java.awt.event.*;
+
 public class ConfigDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonNext;

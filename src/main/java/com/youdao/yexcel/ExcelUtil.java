@@ -5,6 +5,11 @@ import com.youdao.model.TableDataModel;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 
+import javax.swing.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Vector;
 import java.util.concurrent.ExecutionException;
 
@@ -33,9 +38,7 @@ public class ExcelUtil {
                 }
             };
             swingWorker.execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InvalidFormatException e) {
+        } catch (IOException | InvalidFormatException e) {
             e.printStackTrace();
         }
 
