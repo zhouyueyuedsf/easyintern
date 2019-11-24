@@ -4,4 +4,5 @@ import com.youdao.model.TableDataModel;
 
 public interface ModelGenCallBack {
     void onSuccess(TableDataModel settingTableModel);
+    void onError(String message);
 }

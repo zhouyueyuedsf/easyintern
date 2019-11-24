@@ -1,5 +1,7 @@
 package com.youdao.yexcel;
 
+import com.intellij.openapi.ui.messages.MessageDialog;
+import com.intellij.util.messages.impl.Message;
 import com.youdao.model.ConfigModel;
 import com.youdao.model.TableDataModel;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -33,7 +35,7 @@ public class ExcelUtil {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (ExecutionException e) {
-                        e.printStackTrace();
+                        callBack.onError(e.getMessage());
                     }
                 }
             };
@@ -47,7 +49,7 @@ public class ExcelUtil {
     private static Vector<Vector<String>> readExcel2VectorHandler(Workbook workbook, int startCol, int endCol, int startRow,
                                                                   int endRow, int sheetIndex) {
         Vector<Vector<String>> vector = new Vector<>();
-         Sheet sheet = workbook.getSheetAt(sheetIndex);
+        Sheet sheet = workbook.getSheetAt(sheetIndex);
         long maxRow = sheet.getLastRowNum() > endRow ?
                 ((long) endRow) : sheet.getLastRowNum();
 

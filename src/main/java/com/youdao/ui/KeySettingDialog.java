@@ -1,5 +1,6 @@
 package com.youdao.ui;
 
+import com.intellij.openapi.ui.messages.MessageDialog;
 import com.intellij.ui.table.JBTable;
 import com.youdao.adapter.KeySettingTableAdapter;
 import com.youdao.model.ConfigModel;
@@ -28,7 +29,21 @@ public class KeySettingDialog extends JDialog {
     private static HashMap<String, String> abbrMap;
     static {
         abbrMap = new HashMap<>();
-        abbrMap.put("English", "");
+        abbrMap.put("English", "en");
+        abbrMap.put("Arabic", "ar");
+        abbrMap.put("Bengali", "bn");
+        abbrMap.put("Spanish", "es");
+        abbrMap.put("Hindi", "hi");
+        abbrMap.put("Indonesian", "in");
+        abbrMap.put("Japanese", "ja");
+        abbrMap.put("Marathi", "mr");
+        abbrMap.put("Portuguese", "pt");
+        abbrMap.put("Tamil", "ta");
+        abbrMap.put("Telugu", "te");
+        abbrMap.put("Thai", "th");
+        abbrMap.put("Filipino", "tl");
+        abbrMap.put("Urdu", "ur");
+        abbrMap.put("Vietnamese", "vi");
 
     }
     KeySettingDialog() {
@@ -55,15 +70,6 @@ public class KeySettingDialog extends JDialog {
                 } else  {
                     englishVector = tempEnglishVector;
                 }
-//                int count = 0;
-//                for (Vector<String> rows : dataModel.data) {
-//                    if (config.includeHead && count == 0) {
-//                        count++;
-//                        continue;
-//                    }
-//                    String english = rows.get(englishIndex);
-//                    englishVector.add(rows.get(englishIndex));
-//                }
                 int arrStartRow = config.stringArrayArea.startRow;
                 int arrEndRow = config.stringArrayArea.endRow;
                 int arrAnchorRow = (arrStartRow + arrEndRow) / 2;
@@ -126,6 +132,10 @@ public class KeySettingDialog extends JDialog {
                 adapter.addColumn("string english value", dataModel.data.get(englishIndex + 1));
                 tableKeySetting.setModel(adapter);
             }
+
+            @Override
+            public void onError(String message) {
+            }
         });
     }
 
@@ -166,6 +176,7 @@ public class KeySettingDialog extends JDialog {
         if (config.includeHead) {
             Vector<Vector<String>> matrixData = dataModel.data;
             Vector<Vector<String>> outputData = new Vector<>();
+            // 转置矩阵用于更好的输出
             transposed(matrixData, outputData);
             int arrStart = config.stringArrayArea.startRow;
             int arrEnd = config.stringArrayArea.endRow;
