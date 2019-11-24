@@ -1,20 +1,13 @@
 package com.youdao.ui;
 
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.fileChooser.FileChooser;
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
 import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.ui.TextBrowseFolderListener;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
-import com.intellij.openapi.ui.messages.MessageDialog;
-import com.intellij.openapi.vfs.VirtualFile;
 import com.youdao.model.ConfigModel;
-import com.youdao.model.Rect;
-
-import javax.swing.*;
-import java.awt.event.*;
 
 public class ConfigDialog extends JDialog {
     private JPanel contentPane;

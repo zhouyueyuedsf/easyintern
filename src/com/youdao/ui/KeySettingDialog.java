@@ -8,8 +8,6 @@ import com.youdao.yexcel.ExcelUtil;
 import com.youdao.yexcel.ModelGenCallBack;
 import org.apache.commons.io.FileUtils;
 
-import javax.swing.*;
-import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
