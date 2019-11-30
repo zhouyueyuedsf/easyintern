@@ -78,7 +78,9 @@ public class ConfigDialog extends JDialog {
         configModel.validArea.endCol = Integer.parseInt(textFieldEndCol.getText());
         configModel.validArea.startRow = Integer.parseInt(textFieldStartRow.getText());
         configModel.validArea.endRow = Integer.parseInt(textFieldEndRow.getText());
-        configModel.englishNum = Integer.parseInt(textFieldEnglishCol.getText());
+        configModel.stringArrayArea.startRow = Integer.parseInt(textFieldSubStartRow.getText());
+        configModel.stringArrayArea.endRow = Integer.parseInt(textFieldSubEndRow.getText());
+        configModel.referColNum = Integer.parseInt(textFieldEnglishCol.getText());
         configModel.includeHead = checkBoxIncludeHead.isSelected();
         configModel.sheetIndex = Integer.parseInt(textFieldSheetIndex.getText());
         if (configModel.checkModel()) {
@@ -86,7 +88,7 @@ public class ConfigDialog extends JDialog {
             settingDialog.pack();
             settingDialog.setVisible(true);
         } else {
-            Messages.showMessageDialog(project, "有配置数据未填写",  "Error", Messages.getErrorIcon());
+            Messages.showMessageDialog(project, "Configuration error, please check it",  "Error", Messages.getErrorIcon());
         }
     }
 

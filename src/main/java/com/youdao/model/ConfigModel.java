@@ -7,11 +7,14 @@ public class ConfigModel {
     public String inputFilePath;
     public Rect validArea = new Rect();
     public Rect stringArrayArea = new Rect();
-    public int englishNum = 0;
+    /**
+     * 在excel中的参照列号
+     */
+    public int referColNum = 0;
     public boolean includeHead = true;
     public int sheetIndex = 0;
 
     public boolean checkModel() {
-        return !StringUtil.isBlank(outFilePath) && !StringUtil.isBlank(inputFilePath) && validArea.checkModel() && stringArrayArea.checkModel();
+        return !StringUtil.isBlank(outFilePath) && !StringUtil.isBlank(inputFilePath) && validArea.checkModel() && stringArrayArea.checkModel() && validArea.startCol <= referColNum;
     }
 }

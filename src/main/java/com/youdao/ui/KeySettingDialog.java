@@ -1,20 +1,25 @@
 package com.youdao.ui;
 
-import com.intellij.openapi.ui.messages.MessageDialog;
 import com.intellij.ui.table.JBTable;
+import com.twelvemonkeys.imageio.metadata.tiff.IFD;
 import com.youdao.adapter.KeySettingTableAdapter;
 import com.youdao.model.ConfigModel;
 import com.youdao.model.TableDataModel;
+import com.youdao.util.Constant;
 import com.youdao.yexcel.ExcelUtil;
 import com.youdao.yexcel.ModelGenCallBack;
 import org.apache.commons.io.FileUtils;
 
+import javax.sql.rowset.spi.XmlReader;
 import javax.swing.*;
+import javax.swing.event.*;
+import javax.xml.parsers.SAXParser;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 public class KeySettingDialog extends JDialog {
@@ -26,111 +31,100 @@ public class KeySettingDialog extends JDialog {
     private TableDataModel dataModel = new TableDataModel();
     private KeySettingTableAdapter adapter;
     private ConfigModel config;
-    private static HashMap<String, String> abbrMap;
-    static {
-        abbrMap = new HashMap<>();
-        abbrMap.put("English", "en");
-        abbrMap.put("Arabic", "ar");
-        abbrMap.put("Bengali", "bn");
-        abbrMap.put("Spanish", "es");
-        abbrMap.put("Hindi", "hi");
-        abbrMap.put("Indonesian", "in");
-        abbrMap.put("Japanese", "ja");
-        abbrMap.put("Marathi", "mr");
-        abbrMap.put("Portuguese", "pt");
-        abbrMap.put("Tamil", "ta");
-        abbrMap.put("Telugu", "te");
-        abbrMap.put("Thai", "th");
-        abbrMap.put("Filipino", "tl");
-        abbrMap.put("Urdu", "ur");
-        abbrMap.put("Vietnamese", "vi");
+    private static HashMap<String, String> abbrMap = new HashMap<>();
+    private Vector<String> headNameRow = new Vector<>();
+    private HashMap<String, Vector<String>> headNameAndColMap = new HashMap<>();
+    private Vector<String> keyCol = new Vector<>();
+    /**
+     * 配置给出的参照列
+     */
+    private Vector<String> referCol = new Vector<>();
+    private final String KEY_COL_HEAD_NAME = "KEY_NAME";
+    private final int KYE_COL_INDEX = 0;
+    private final int REFER_COL_INDEX = 1;
 
-    }
     KeySettingDialog() {
 
     }
+
+    private void initData(Vector<Vector<String>> rawData) {
+        if (config.includeHead) {
+            headNameRow = rawData.remove(0);
+        }
+        for (String name : headNameRow) {
+            String abbr = Constant.sAbbrProviderMap.get(name);
+            if (abbr == null) {
+                abbr = name;
+            }
+            abbrMap.put(name, abbr);
+        }
+        // 转置后和headNameRow一一对应
+        Vector<Vector<String>> transposedData = new Vector<>();
+        transposed(rawData, transposedData);
+        int colNum = headNameRow.size();
+        for (int i = 0; i < colNum; i++) {
+            headNameAndColMap.put(headNameRow.get(i), transposedData.get(i));
+        }
+        int referColIndex = config.referColNum - config.validArea.startCol;
+        referCol = headNameAndColMap.get(headNameRow.get(referColIndex));
+        initKeyCol();
+    }
+
+    private int getAnchorIndex(int arrStartIndex, int arrEndIndex) {
+        return (arrStartIndex + arrEndIndex) / 2;
+    }
+    private int calStringArrIndex(int stringArrSubRow, int startRow) {
+        int offset = config.includeHead ? -1 : 0;
+        return stringArrSubRow - startRow + offset;
+    }
+    /**
+     * keyCol的生成是由referCol决定的，默认给出x_x格式
+     */
+    private void initKeyCol() {
+
+        int arrStartIndex = calStringArrIndex(config.stringArrayArea.startRow, config.validArea.startRow);
+        int arrEndIndex = calStringArrIndex(config.stringArrayArea.endRow, config.validArea.startRow);
+        int arrAnchorIndex = getAnchorIndex(arrStartIndex, arrEndIndex);
+        for (int i = 0; i < referCol.size(); i++) {
+            if (i >= arrStartIndex && i <= arrEndIndex) {
+                if (i == arrAnchorIndex) {
+                    keyCol.add("write string array key");
+                    continue;
+                }
+                keyCol.add("");
+            } else {
+                String english = referCol.get(i);
+                String[] keyString = english.split(" ");
+                StringBuilder keyBuilder = new StringBuilder();
+                int len = keyString.length;
+                int maxLen = Math.min(len, MAX_LEN);
+                for (int j = 0; j < maxLen - 1; j++) {
+                    keyBuilder.append(keyString[j]);
+                    keyBuilder.append("_");
+                }
+                keyBuilder.append(keyString[maxLen - 1]);
+                keyCol.add(keyBuilder.toString());
+            }
+        }
+        headNameAndColMap.put(KEY_COL_HEAD_NAME, keyCol);
+    }
+
     public KeySettingDialog(ConfigModel configModel) {
         this.config = configModel;
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonFinish);
-        initListener();
+
         adapter = new KeySettingTableAdapter();
         ExcelUtil.readSpecialArea(configModel, new ModelGenCallBack() {
             @Override
             public void onSuccess(TableDataModel settingTableModel) {
-                transposed(settingTableModel.data, dataModel.data);
-                int rowCount = config.includeHead ? dataModel.data.size() - 1: dataModel.data.size();
-                Vector<String> keyVector = new Vector<>();
-                int englishIndex = config.englishNum - config.validArea.startCol;
-                Vector<String> englishVector = null;
-                Vector<String> tempEnglishVector = dataModel.data.get(englishIndex);
-                if (configModel.includeHead) {
-                    englishVector = new Vector<>(tempEnglishVector.subList(1, tempEnglishVector.size()));
-                } else  {
-                    englishVector = tempEnglishVector;
-                }
-                int arrStartRow = config.stringArrayArea.startRow;
-                int arrEndRow = config.stringArrayArea.endRow;
-                int arrAnchorRow = (arrStartRow + arrEndRow) / 2;
-                for (int i = 0; i < englishVector.size(); i++) {
-                    if (configModel.includeHead && i == 0) {
-                        continue;
-                    }
-                    if (i > arrStartRow && i < arrEndRow) {
-                        if (i == arrAnchorRow) {
-                            keyVector.add("请在此处填写string array的key值");
-                            continue;
-                        }
-                        keyVector.add(0, "");
-                        // todo 设置下划线
-//                        tableKeySetting.getCellEditor()
-                    } else{
-                        String english = englishVector.get(i);
-                        String[] keyString = english.split(" ");
-                        StringBuilder keyBuilder = new StringBuilder();
-                        int len = keyString.length;
-                        int maxLen = Math.min(len, MAX_LEN);
-                        for (int j = 0; j < maxLen - 1; j++) {
-                            keyBuilder.append(keyString[j]);
-                            keyBuilder.append("_");
-                        }
-                        keyBuilder.append(keyString[maxLen - 1]);
-                        keyVector.add(keyBuilder.toString());
-                    }
-                }
-                dataModel.data.add(0, keyVector);
-//                for (int i = 0; i < englishVector.size(); i++) {
-//                    Vector<String> vector = dataModel.data.get(i);
-//                    if (i > arrStartRow && i < arrEndRow) {
-//                        if (i == arrAnchorRow) {
-//                            vector.add(0, "请在此处填写string array的key值");
-//                            continue;
-//                        }
-//                        vector.add(0, "");
-//                        // todo 设置下划线
-////                        tableKeySetting.getCellEditor()
-//                    }
-//                    String english = englishVector.get(i);
-//                    String[] keyString = english.split("");
-//                    StringBuilder keyBuilder = new StringBuilder();
-//                    for (int j = 0; j < 3; j++) {
-//                        keyBuilder.append(keyString[j]);
-//                    }
-//                    String key = keyBuilder.toString();
-//                    dataModel.data.get(i).add(0, key);
-//                }
-
-//                for (int i = 0; i < dataModel.data.size(); i++) {
-//                    if (config.includeHead && i == 0) {
-//                        continue;
-//                    }
-//                    Vector<String> vector = dataModel.data.get(i);
-//                    keyVector.add(vector.get(0));
-//                }
-                adapter.addColumn("string key", dataModel.data.get(0));
-                adapter.addColumn("string english value", dataModel.data.get(englishIndex + 1));
+                initData(settingTableModel.data);
+                adapter.addColumn("string key", keyCol);
+                adapter.addColumn("string english value", referCol);
                 tableKeySetting.setModel(adapter);
+                initListener();
+
             }
 
             @Override
@@ -167,51 +161,63 @@ public class KeySettingDialog extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        adapter.addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                int col = e.getColumn();
+                int row = e.getFirstRow();
+                String newValue = (String) adapter.getValueAt(row, col);
+                if (col <= 1) {
+                    if (col == KYE_COL_INDEX) {
+                        keyCol.set(row, newValue);
+                        headNameAndColMap.put(KEY_COL_HEAD_NAME, keyCol);
+                    } else {
+                        referCol.set(row, newValue);
+                        headNameAndColMap.put(headNameRow.get(config.referColNum - config.validArea.startCol), referCol);
+                    }
+                }
+            }
+        });
     }
 
     private void onOK() {
-        // out put
-        String outPutPath = config.inputFilePath;
-
-        if (config.includeHead) {
-            Vector<Vector<String>> matrixData = dataModel.data;
-            Vector<Vector<String>> outputData = new Vector<>();
-            // 转置矩阵用于更好的输出
-            transposed(matrixData, outputData);
-            int arrStart = config.stringArrayArea.startRow;
-            int arrEnd = config.stringArrayArea.endRow;
-            int arrAnchor = (arrStart + arrEnd) / 2;
-            for (int i = 0; i < outputData.size(); i++) {
-                Vector<String> langVector = outputData.get(i);
-                String abbr = abbrMap.get(langVector.get(0));
-                File newFile = new File(outPutPath + "/strings-" + abbr +"xml");
-                try {
-                    for (int j = 1; j < langVector.size(); j++) {
-                        if (j > arrStart && j < arrEnd) {
+        // output
+        String outPutPath = config.outFilePath;
+        Vector<String> outputKeyVector = headNameAndColMap.get(KEY_COL_HEAD_NAME);
+        int arrStartIndex = calStringArrIndex(config.stringArrayArea.startRow, config.validArea.startRow);
+        int arrEndIndex = calStringArrIndex(config.stringArrayArea.endRow, config.validArea.startRow);
+        int arrAnchorIndex = getAnchorIndex(arrStartIndex, arrEndIndex);
+        for (Map.Entry<String, Vector<String>> entry : headNameAndColMap.entrySet()) {
+            if (!KEY_COL_HEAD_NAME.equals(entry.getKey())) {
+                Vector<String> outValueVector = entry.getValue();
+                File outFile = new File(outPutPath + "/strings-" + abbrMap.get(entry.getKey()) + ".xml");
+                int size = outputKeyVector.size();
+                for (int i = 0; i < size; i++) {
+                    try {
+                        if (i >= arrStartIndex && i <= arrEndIndex) {
                             StringBuilder arrBuilder = new StringBuilder();
-                            for (int k = j; k < arrEnd; k++) {
-                                if (k == arrAnchor) {
-                                    arrBuilder.insert(0, String.format("<string-array name=\"%s\">", langVector.get(i)));
-                                } else {
-                                    arrBuilder.append(String.format("<item>%s</item>", langVector.get(i)));
+                            for (int k = i; k <= arrEndIndex; k++) {
+                                if (k == arrAnchorIndex) {
+                                    arrBuilder.insert(0, String.format("<string-array name=\"%s\">\n", outputKeyVector.get(k)));
                                 }
+                                arrBuilder.append(String.format("<item>%s</item>\n", outValueVector.get(k)));
                             }
                             arrBuilder.append("</string-array>");
-                            j = arrEnd;
-                            FileUtils.write(newFile, arrBuilder.toString(), Charset.defaultCharset(), true);
-                        } else {
-                            FileUtils.write(newFile, langVector.get(j), Charset.defaultCharset(), true);
+                            i = arrEndIndex;
+                            FileUtils.write(outFile, arrBuilder.toString(), Charset.defaultCharset(), true);
+                            continue;
                         }
+                        FileUtils.write(outFile, String.format("<string key = \"%s\">%s</string>\n", outputKeyVector.get(i), outValueVector.get(i)).toString(),
+                                Charset.defaultCharset(), true);
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
-
             }
         }
-
         dispose();
     }
+
 
     /**
      * 转置矩阵
@@ -227,7 +233,7 @@ public class KeySettingDialog extends JDialog {
             Vector v = new Vector<String>(rowNum);
             for (int j = 0; j < rowNum; j++) {
                 Vector oldc = matrixData.get(j);
-                v.add(j, (String)oldc.get(i));
+                v.add(j, (String) oldc.get(i));
             }
             outputData.add(i, v);
         }
@@ -237,6 +243,7 @@ public class KeySettingDialog extends JDialog {
         // add your code here if necessary
         dispose();
     }
+
     public static void main(String[] args) {
         KeySettingDialog dialog = new KeySettingDialog();
         dialog.pack();
