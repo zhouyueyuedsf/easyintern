@@ -1,5 +1,6 @@
 package com.youdao.model;
 
+
 import org.jsoup.helper.StringUtil;
 
 public class ConfigModel {
