@@ -1,15 +1,16 @@
 package com.youdao.util
 
-import com.youdao.model.AndroidStringXmlModel
+import com.youdao.model.Resource
+import java.io.FileInputStream
 import javax.xml.bind.JAXBContext
 
 
 object XmlUtil {
-    fun readStringsXml(path: String): AndroidStringXmlModel {
-        val mJaxb = JAXBContext.newInstance(AndroidStringXmlModel::class.java)
+    fun readStringsXml(path: String): Resource {
+        val mJaxb = JAXBContext.newInstance(Resource::class.java)
         val unmarshaller = mJaxb.createUnmarshaller()
-        val stream = XmlUtil::class.java.classLoader.getResourceAsStream(path)
-        val model = unmarshaller.unmarshal(stream) as AndroidStringXmlModel
+        val stream = FileInputStream(path)
+        val model = unmarshaller.unmarshal(stream) as Resource
         return model
     }
 }

@@ -2,35 +2,35 @@ package com.youdao.model
 
 import javax.xml.bind.annotation.*
 
-@XmlRootElement(name = "resource")
+//@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-data class AndroidStringXmlModel(
+data class Resource(
         @XmlList
         var stringMapModel: List<StringMapModel>,
         @XmlList
         var stringArrayMapModel: List<StringArrayMapModel>
 )
 
-@XmlRootElement(name = "string")
+//@XmlRootElement(name = "string")
 @XmlAccessorType(XmlAccessType.FIELD)
 data class StringMapModel(
-        @XmlAttribute(name = "name")
-        var key: String,
+        @XmlAttribute
+        var name: String,
         @XmlValue
         var text: String)
 
-@XmlRootElement(name = "item")
+//@XmlRootElement(name = "item")
 @XmlAccessorType(XmlAccessType.FIELD)
-data class ItemMapModel(
-        @XmlAttribute(name = "name")
-        var key: String,
+data class Item(
+        @XmlAttribute
+        var name: String,
         @XmlValue
         var text: String)
 
-@XmlRootElement(name = "string-array")
+//@XmlRootElement(name = "string-array")
 @XmlAccessorType(XmlAccessType.FIELD)
 data class StringArrayMapModel(
-        @XmlAttribute(name = "name")
+//        @XmlAttribute(name = "name")
         var key: String,
 
-        var itemList: List<ItemMapModel>)
+        var itemList: List<Item>)
