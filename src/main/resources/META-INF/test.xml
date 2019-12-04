@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Order>
+    <string-array id="11021">
+        <name>Apple</name>
+    </string-array>
+    <string-array id="11022">
+        <name>Banana</name>
+    </string-array>
+</Order>

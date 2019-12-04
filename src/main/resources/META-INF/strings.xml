@@ -1,414 +1,551 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">يو-ديكشنري</string>
-    <string name="app_slogan">لدينا كل الكلمات التي تحتاجها!</string>
-    <string name="app_copyright">الإصدار</string>
-
-    <string name="offline_package_dictionary_translation">قاموس غير متصل بالإنترنت / ترجمة الجمل غير متصلة بالإنترنت</string>
-    <string name="two_way_translation">ترجمة ثنائية الاتجاه</string>
-    <string name="translation_tip_get_result">شبكة الإنترنت غير متوفرة حاليا. لقد أظهرنا  الآن نتائج  غير متصلة بالإنترنت .</string>
-    <string name="translation_tip_to_down_tran">الشبكة الإنترنت غير المتوفرة. قم بتنزيل حِزمة غير متصلة بالإنترنت  للحصول على الترجمة حتى عندما تكون غير متصل بالإنترنت.</string>
-    <string name="offline_tip_to_down">الشبكة الإنترنت غير متوفرة. قم بتنزيل  قاموس غير متصل بالإنترنت  للحصول على ترجمة الكلمات حتى عندما تكون غير متصل بالإنترنت. يرجى الإنتباه أن الحصول على ترجمة الجمل يحتاج إلى الإتصال بشبكة الإنترنت.</string>
-    <string name="translation_tip_network_fail">شبكة الإنترنت غير متوفرة. يرجى التحقق وإعادة المحاولة.</string>
-    <string name="offline_tip_to_down_dic">لا توجد نتائج غير متصلة بالإنترنت  حاليا. قم بتنزيل حِزمة الترجمة غير المتصلة بالإنترنت  للحصول على الترجمة حتى عندما تكون غير متصل بالإنترنت.</string>
-    <string name="translation_tip_retry">لا توجد نتائج غير متصلة بالإنترنت حاليا. يرجى الاتصال بشبكة الإنترنت وإعادة المحاولة.</string>
-
-    <string name="remove_translation_cancel">إلغاء</string>
-    <string name="remove_translation_go_remove">حذف</string>
-    <string name="offline_package_down_load">تنزيل</string>
-    <string name="remove_translation_tip_refresh">حذف حِزمة غير متصلة بالإنترنت  التي تم تنزيلها؟</string>
-    <string name="offline_package_down_load_dictionary"> تنزيل قاموس غير متصل بالإنترنت</string>
-    <string name="offline_package_down_load_translation"> تنزيل ترجمة الجمل بدون الإنترنت</string>
-    <string name="offline_package_translation">ترجمة الجمل غير متصلة بالإنترنت</string>
-    <string name="offline_package_down_load_ing">جاري التنزيل…</string>
-    <string name="offline_package_dictionary">قاموس غير متصل بالإنترنت</string>
-
-    <string name="menu_local">المحلي</string>
-    <string name="menu_offline">حزمة غير متصلة بالإنترنت</string>
-    <string name="menu_words">كلماتي</string>
-    <string name="menu_settings">الإعدادات</string>
-    <string name="settings_notifications">الإشعارات</string>
-    <string name="settings_quick_search">ترجمة فورية</string>
-    <string name="menu_clipboard_search">اضغط للترجمة</string>
-    <string name="menu_clear_history">مسح محتوى البحث</string>
-    <string name="menu_feedback">رأيك</string>
-    <string name="menu_rate">تقييمك</string>
-    <string name="menu_survey">استقصاء لقياس مدى الرضا</string>
-    <string name="menu_suggest">بلغ عن وجود مشكلة</string>
-    <string name="menu_other">أخرى</string>
-    <string name="menu_about">معلومات عنا</string>
-    <string name="menu_share">مشاركة</string>
-    <string name="undo">تراجع</string>
-    <string name="share_to_download_title">لقد قمت بتحميل القاموس الغير متصل بالإنترنت بنجاح. شاركه مع أصدقائك.</string>
-    <string name="share_ok">شاركه الآن</string>
-    <string name="share_deny">لا شكراً</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- global strings -->
+    <string name="app_name">U-Dictionary</string>
+    <string name="app_slogan">We have all the words you need!</string>
+    <string name="app_copyright">Version</string>
 
 
-    <string name="info_empty">لا توجد بيانات</string>
-    <string name="info_loading_failed">فشل في تحميل التحديثات</string>
-    <string name="section_daily">أهم الأخبار اليومية</string>
-    <string name="section_article">المقالات</string>
-    <string name="section_word">كلمات اليوم</string>
-    <string name="section_quote">اقتباسات اليوم</string>
-    <string name="section_more">المزيد</string>
-    <string name="section_loading_error">فشل في تجميل المحتوى. اضغط هنا للمحاولة مرة أخرى</string>
+    <!-- TODO add other strings -->
+    <string name="translation_tip_refresh">Refresh</string>
+    <string name="remove_translation_tip_refresh">Remove this installed offline package?</string>
+    <string name="remove_translation_cancel">Cancel</string>
+    <string name="remove_translation_go_remove">Remove</string>
+    <string name="offline_tip_to_down">Network unavailable. Download offline dictionary package to get meanings of the words when offline. But the sentence translation needs network.</string>
+    <string name="offline_tip_to_down_dic">No offline results. Download offline translation package to get translations even when you are offline. </string>
+    <string name="translation_tip_get_result">Network unavailable. We have shown the offline results.</string>
+    <string name="translation_tip_network_fail">Network unavailable. Please check and retry.</string>
+    <string name="translation_tip_retry">No offline results. Please connect to the network and retry.</string>
+    <string name="translation_tip_to_down_tran">Network unavailable. Download offline packages to get translations even when you are offline.</string>
+    <string name="two_way_translation">Two-way translation</string>
+    <string name="offline_package_down_load_dictionary">Download Offline Dictionary</string>
+    <string name="offline_package_dictionary">Offline Dictionary</string>
+    <string name="offline_package_down_load">Download</string>
+    <string name="offline_package_translation">Offline Sentence Translation</string>
+    <string name="offline_package_down_load_translation">Download Offline Sentence Translation</string>
+    <string name="offline_package_dictionary_translation">Offline Dictionary / Offline Sentence Translation</string>
+    <string name="offline_package_down_load_ing">Downloading…</string>
 
 
-    <string name="action_share">مشاركة</string>
-    <string name="share_to">مشاركة مع</string>
-    <string name="sentence_reading">استمع إلى نطق الجملة</string>
-    <string name="quote_slide_tips">قم بالتحريك لرؤية المزيد</string>
+    <!-- menu titles -->
+    <string name="menu_local">Local</string>
+    <string name="menu_offline">Offline Package</string>
+    <string name="menu_lock_screen">Word Lock Screen</string>
+    <string name="menu_words">My Words</string>
+    <string name="menu_settings">Settings</string>
+
+    <string name="menu_clipboard_search">Copy to Translate</string>
+
+    <string name="clipboard_copy">Copy</string>
+    <string name="menu_clipboard_search_tips">Copy a word or sentence in any app to get the translation.</string>
+    <string name="menu_lock_screen_tips">Click to change LockScreen settings.</string>
+    <string name="change_lock_screen_word">Select the word list for lock screen</string>
+
+    <string name="menu_auto_translate">Automatically Translate</string>
+    <string name="menu_clear_history">Clear Recent History</string>
+    <string name="menu_clear_history_tips">Clear all the search history below the search box.</string>
+    <string name="menu_feedback">Feedback</string>
+    <string name="menu_rate">Rate It</string>
+    <string name="menu_survey">Satisfaction Survey</string>
+    <string name="menu_suggest">Report a Problem</string>
+    <string name="menu_other">Others</string>
+    <string name="menu_about">About</string>
+    <string name="menu_about_new">New</string>
+    <string name="menu_share">Share with Friends</string>
+    <string name="menu_language">Display Language</string>
+
+    <string name="undo">Undo</string>
+    <string name="share_to_download_title">You have downloaded the offline successfully. Tell your friends</string>
+    <string name="share_ok">Share Now</string>
+    <string name="share_deny">No, thanks</string>
+
+    <!-- info flow strings -->
+    <string name="info_empty">No data</string>
+    <string name="info_loading_failed">Update has failed.</string>
+    <string name="section_daily">Daily Highlights</string>
+    <string name="section_article">Articles</string>
+    <string name="section_word">Words for Today</string>
+    <string name="section_quote">Quotes for Today</string>
+    <string name="section_more">More</string>
+    <string name="section_loading_error">Fail to load. Click to try again.</string>
+    <!-- daily quote strings -->
+    <string name="action_share">Share</string>
+    <string name="share_to">Share to</string>
+    <string name="sentence_reading">Listen to the sentence</string>
+    <string name="quote_slide_tips">Slide to view more</string>
+    <!-- daily word strings -->
+
+    <!-- daily article strings -->
+    <string name="web_loading">Loading…</string>
+
+    <!-- query word strings -->
+    <string name="query_hint">Words, phrases or sentences</string>
+    <string name="definition">Definition</string>
+    <string name="no_result_tip">No Basic Result</string>
+    <string name="typo_tip">Do you want to search: </string>
+    <string name="get_web_result">Get more online results</string>
+    <string name="auth_sentence">Sample Sentences</string>
+    <string name="more_definitions">More definitions</string>
+
+    <string name="action_send">Send</string>
+
+    <!-- dialog strings -->
+    <string name="network_error_tip">Network not available.</string>
+    <string name="delete">Delete</string>
+    <string name="clear_history_tip">Clear search history?</string>
+    <string name="clear_history_item">Clear all history</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="later">Not now</string>
+    <string name="sure">Sure</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <!-- Speech -->
+    <string name="loading_speech">Loading the pronunciation…</string>
+    <string name="load_speech_failed">Failed to get the pronunciation. Please try again later.</string>
+    <!-- app评分功能 -->
+    <string name="market_grade_title">Do you like our app?</string>
+    <string name="market_grade_message">If you enjoy using U-Dictionary, would you mind taking a moment to rate it? Thanks!</string>
+    <string name="go_rate">Yes! Rate it now</string>
+    <string name="go_feedback">No! Report a problem</string>
+    <string name="feedback_message">Your suggestions help U-Dictionary do better. Tell us your feedback!</string>
+    <string name="rate_tips">Why not show us some love with a nice comment on Google Play?</string>
+    <string name="no_market_found">Sorry, we can\'t find Google Play on your phone.</string>
+    <string name="remind_me_later">Remind me later</string>
+
+    <string name="enter">Try Now!</string>
+
+    <string name="language">Language</string>
+
+    <string name="menu_edit">Edit</string>
+    <string name="menu_all">Select all</string>
+    <string name="menu_create_folder">Create New Folder</string>
+    <string name="survey_tip">Do you tend to recommend U-Dictionary to your friends?</string>
 
 
-    <string name="web_loading">جاري التحميل...</string>
+    <string name="suggest_tips">Suggestions from you help us make U-Dictionary better!</string>
+    <string name="open_noti_tip">You will receive notifications about Today\'s Word, Today\'s Sentence, and interesting promotions.</string>
+    <string name="close_noti_tip">You may miss important alerts and updates.</string>
+    <string name="open_noti_title">Notifications on</string>
+    <string name="close_noti_title">Notifications off</string>
+    <string name="no_words">It\'s empty. Tap the star next to a translation to save it here.</string>
+
+    <string name="refresh">Refresh</string>
+    <string name="load_more">More</string>
+    <string name="suggest_type_hint">Type:</string>
+    <string name="suggest_content_hint">Content: (with 5 words or more)</string>
+    <string name="ok">OK</string>
+    <string name="upgrade">Upgrade</string>
+    <string name="clear_history_tips">Search history cleared.</string>
+    <string name="input_empty_tip">Input something</string>
+    <string name="input_send_tip">Translation copied. Paste to enter it.</string>
+    <string name="input_send_failure">No result to paste.</string>
+    <string name="no_platform_tip">Sorry, we can\'t find the app on your phone.</string>
+    <string name="add_favorite_tip">Added to My Words!</string>
+    <string name="remove_favorite_tip">Removed from My Words!</string>
+    <string name="thanks">Thanks!</string>
+    <string name="content_short_tip">Describe it with 5 words or more.</string>
+    <string name="quit_tip">Press Back again to quit U-Dictionary.</string>
 
 
-    <string name="query_hint">كلمة، تعبير أو جملة</string>
-    <string name="definition">تعريف</string>
-    <string name="no_result_tip">لا توجد نتائج رئيسية</string>
-    <string name="typo_tip">هل تود البحث عن:</string>
-    <string name="get_web_result">الحصول على نتائج أكثر عبر الإنترنت</string>
-    <string name="auth_sentence">أمثلة للجمل</string>
-    <string name="more_definitions">المزيد من التعريفات</string>
-    <string name="action_send">أرسل</string>
+    <string name="pick_score_tip">Please give us a score.</string>
+    <string name="select_language">Select language</string>
+    <string name="home">Start</string>
+    <string name="clear_download_tip">Remove the installed offline package?</string>
+    <string name="clear_download_ok">Remove</string>
+    <string name="download_removed_tips">Offline dictionary removed.</string>
+    <string name="update_offline_tip">Updating this offline will delete current package.</string>
+    <string name="update_offline_confirm">Update</string>
+    <string name="language_no_offline">This language is not available offline</string>
+    <string name="survey_error">There was a problem sending the message. Please try again later.</string>
+    <string name="sdcard_error_tip">SDCard not available.</string>
+    <string name="folder_error_tip">Fail to create folder in SDCard</string>
+    <string name="sdcard_size_error_tip">Insufficient SDCard space.</string>
+    <string name="download_error_tip">Download Error. Please try again later.</string>
+    <string name="download_cancel_tip">Cancel download of the offline package?</string>
+    <string name="download_offline_tip">Please install offline package.</string>
+
+    <string name="offline_update_label">Click to update</string>
+    <string name="save_suggest_title">Do you want to save your suggest now?</string>
+    <string name="save">Save</string>
+
+    <string name="share_quote_title">Share with friends</string>
+    <string name="share_chooser_title">Share via</string>
+    <string name="include_screen_shot">include screen shot</string>
+    <string name="menu_search">Search</string>
+    <string name="best_app">U Dictionary, Google Play\'s Best Apps of 2016.</string>
+
+    <string name="no_network_tip">The network is unavailable. We have shown the offline results.</string>
+    <string name="no_basic_offline_tip">The network is unavailable and you haven\'t download basic offline packages.</string>
+    <string name="no_basic_support_tip">The basic offline package is not supported now.</string>
+    <string name="type_ad">Ads</string>
+    <string name="next">Next</string>
+    <!--<string name="quick_trans_hint">Enter text to translate</string>-->
+    <string name="download_basic_package_tip">Download the basic offline package</string>
+
+    <!-- search result item titles -->
+    <string name="card_collins">Collins COBUILD Advanced Dictionary</string>
+    <string name="card_sample_sent">Sample Sentences</string>
+    <string name="card_video_sent">Video Sentences</string>
+    <string name="card_ee">English Dictionary</string>
+    <string name="card_wiki">Wikipedia</string>
+    <string name="card_tran">Machine translation result</string>
+    <string name="card_web_tran">Web Definition</string>
+    <string name="card_typos">typos</string>
+    <string name="card_syno">Synonyms</string>
+    <string name="card_anto">Antonyms</string>
+    <string name="card_thesaurus">Synonyms&#160;&amp;&#160;Antonyms</string>
+    <string name="card_sent">Bilingual Sentences</string>
+    <string name="card_pic_dict">Picture Dictionary</string>
+    <string name="card_rel_word">Cognate words</string>
+    <string name="card_phrs">Phrases</string>
+    <string name="card_etym">Etymology</string>
+    <string name="voice_recog_select_language_title">You are going to speak:</string>
+    <string name="voice_recog_result">Please select the word you want</string>
+    <string name="no_voice_recognizer">Your phone does not support speech recognition.</string>
+    <string name="label_view">View</string>
+    <string name="goto_view_favoriate">Go to view my words</string>
+    <string name="dont_show">Don\'t show again</string>
+    <string name="feedback">Feedback</string>
 
 
-    <string name="network_error_tip">لا توجد شبكة.</string>
-    <string name="delete">مسح</string>
-    <string name="clear_history_tip">أتود مسح تاريخ البحث؟</string>
-    <string name="clear_history_item">مسح التاريخ بأكمله</string>
-    <string name="dialog_cancel">إلغاء</string>
-    <string name="confirm">تأكيد</string>
-    <string name="later">ليس الآن</string>
-    <string name="sure">بالطبع</string>
-    <string name="yes">أجل</string>
-    <string name="no">لا</string>
+    <string name="daily_word_share_title">Word for Today is %1$s, Learn its meaning…</string>
 
+    <string name="twslang_ar">Arabic</string>
+    <string name="twslang_bn">Bengali</string>
+    <string name="twslang_de">German</string>
+    <string name="twslang_en">English</string>
+    <string name="twslang_es">Spanish</string>
+    <string name="twslang_fr">French</string>
+    <string name="twslang_gu">Gujarati</string>
+    <string name="twslang_hi">Hindi</string>
+    <string name="twslang_id">Indonesian</string>
+    <string name="twslang_it">Italian</string>
+    <string name="twslang_ja">Japanese</string>
+    <string name="twslang_kn">Kannada</string>
+    <string name="twslang_ko">Korean</string>
+    <string name="twslang_ml">Malayalam</string>
+    <string name="twslang_mr">Marathi</string>
+    <string name="twslang_ms">Malay</string>
+    <string name="twslang_ne">Nepali</string>
+    <string name="twslang_pa">Punjabi</string>
+    <string name="twslang_ta">Tamil</string>
+    <string name="twslang_te">Telugu</string>
+    <string name="twslang_th">Thai</string>
+    <string name="twslang_ur">Urdu</string>
+    <string name="twslang_vi">Vietnamese</string>
 
-    <string name="loading_speech">جاري تحميل النطق</string>
-    <string name="load_speech_failed">فشلت محاولة الحصول على النطق. من فضلك حاول مجدداً لاحقاً</string>
-
-
-    <string name="market_grade_title">هل أعجبك تطبيقنا؟</string>
-    <string name="market_grade_message">إذا أحببت استخدام يو-ديكشنري، هلا أخذت بعض الوقت لتقييمه؟ شكراً!</string>
-    <string name="go_rate">أجل! سأقيمه الآن</string>
-    <string name="go_feedback">لا! أبلغ عن وجود مشكلة</string>
-    <string name="feedback_message">اقتراحك يمكننا من تحسين يو-ديكشنري. أخبرنا برأيك!</string>
-    <string name="rate_tips">لم لا تعبر لنا عن دعمك بكتابة تعليق عنّا على متجر جوجل للتطبيقات؟</string>
-    <string name="no_market_found">عذراً، لا يمكننا إيجاد متجر جوجل للتطبيقات على هاتفك.</string>
-    <string name="remind_me_later">ذكرني لاحقاً.</string>
-    <string name="enter">جرّب الآن.</string>
-    <string name="language">اللغة</string>
-    <string name="menu_edit">تعديل</string>
-    <string name="menu_all">اختيار الكل</string>
-    <string name="menu_create_folder">إنشاء مجلد جديد</string>
-    <string name="survey_tip">هل تود ترشيح يو-ديكشنري لأحد من أصدقائك؟</string>
-    <string name="suggest_tips">تساعدنا اقتراحاتكم على تحسين يو-ديكشنري!</string>
-    <string name="open_noti_tip">سوف تصلك إشعارات بكلمة وجملة اليوم، ستصلك أيضاً عروضنا الترويجية.</string>
-    <string name="close_noti_tip">قد تفوتك تحديثات وتنبيهات مهمة.</string>
-    <string name="open_noti_title">تشغيل الإشعارات</string>
-    <string name="close_noti_title">إطفاء الإشعارات</string>
-    <string name="no_words">لا يوجد شيء هنا. اضغط على رمز النجمة بجانب أي ترجمة لحفظها هنا.</string>
-    <string name="refresh">تحديث</string>
-    <string name="load_more">المزيد</string>
-    <string name="suggest_type_hint">النوع:</string>
-    <string name="suggest_content_hint">المحتوى: (خمس كلمات أو أكثر)</string>
-    <string name="ok">حسناً</string>
-    <string name="upgrade">تطوير</string>
-    <string name="clear_history_tips">تم مسح تاريخ البحث.</string>
-    <string name="input_empty_tip">أدخل شيء ما</string>
-    <string name="no_platform_tip">عذراً، لا يمكننا إيجاد التطبيق على هاتفك.</string>
-    <string name="add_favorite_tip">تمت الإضافة إلى الكلمات المفضلة!</string>
-    <string name="remove_favorite_tip">تمت الإزالة من الكلمات المفضلة!</string>
-    <string name="thanks">شكراً!</string>
-    <string name="content_short_tip">قم بوصفها بخمس كلمات أو أكثر.</string>
-    <string name="quit_tip">اضغط على العودة مرة أخرى للخروج من تطبيق يو-ديكشنري.</string>
-    <string name="pick_score_tip">من فضلك اختر نتيجة.</string>
-    <string name="select_language">اختر اللغة</string>
-    <string name="home">البداية</string>
-    <string name="clear_download_tip">هل تود إزالة باقة التشغيل بدون الاتصال الإنترنت؟</string>
-    <string name="clear_download_ok">إزالة</string>
-    <string name="download_removed_tips">تمت إزالة القاموس الغير متصل بالإنترنت.</string>
-    <string name="update_offline_tip">سوف يسبب تحديث الباقة إزالة الباقة الحالية؟ </string>
-    <string name="update_offline_confirm">تحديث</string>
-    <string name="language_no_offline">هذه اللغة ليست متاحة بدون الاتصال بالإنترنت</string>
-    <string name="survey_error">حدث عطل أثناء الإرسال. من فضلك أعد المحاولة لاحقاً</string>
-    <string name="sdcard_error_tip">لا توجد بطاقة ذاكرة.</string>
-    <string name="download_error_tip">خلل في التحميل. من فضلك أعد المحاولة لاحقاً</string>
-    <string name="download_cancel_tip">إلغاء تنزيل حِزمة غير متصلة بالإنترنت ؟</string>
-    <string name="download_offline_tip">من فضلك حمّل باقة التشغيل بدون الاتصال الإنترنت</string>
-    <string name="offline_update_label">اضغط هنا للتحديث</string>
-    <string name="save_suggest_title">هل تود حفظ اقتراحك الآن؟</string>
-    <string name="save">حفظ</string>
-    <string name="share_quote_title">شارك مع الأصدقاء</string>
-    <string name="share_chooser_title">شارك عن طريق</string>
-    <string name="include_screen_shot">أرسل لقطة للشاشة</string>
-    <string name="menu_search">البحث</string>
-    <string name="best_app">تطبيق يو-ديكشنري، من أفضل التطبيقات لعام 2016، وفقاً لمتجر جوجل للتطبيقات.</string>
-    <string name="no_network_tip">لا توجد شبكة، انت في وضع التشغيل بدون الاتصال الإنترنت.</string>
-    <string name="no_basic_offline_tip">لا توجد شبكة ولم تقم بتحميل باقة التشغيل بدون الاتصال الإنترنت.</string>
-    <string name="no_basic_support_tip">باقة التشغيل بدون الاتصال الإنترنت غير مدعومة في الوقت الحالي.</string>
-    <string name="type_ad">الإعلانات</string>
-    <string name="next">التالي</string>
-    <!--<string name="quick_trans_hint">أدخل الكلمة التي ترغب بترجمتها</string>-->
-    <string name="download_basic_package_tip">قم بتحميل باقة التشغيل بدون الاتصال الإنترنت الأساسية</string>
-
-
-    <string name="card_collins">قاموس كولينز كوبيلد المتقدم</string>
-    <string name="card_sample_sent">أمثلة للجمل</string>
-    <string name="card_ee">قاموس إنجليزي</string>
-    <string name="card_wiki">ويكيبيديا</string>
-    <string name="card_tran">نتائج الترجمة الآلية</string>
-    <string name="card_web_tran">التعريف الموجود على الويب</string>
-    <string name="card_typos">الأخطاء الإملائية</string>
-    <string name="card_sent">المترادفات</string>
-    <string name="card_pic_dict">قاموس الصور</string>
-    <string name="card_rel_word">الكلمات المتشابهة</string>
-    <string name="card_phrs">العبارات</string>
-    <string name="card_etym">الأصل</string>
-    <string name="voice_recog_result">من فضلك اختر الكلمة التي ترغب بها</string>
-    <string name="no_voice_recognizer">هاتفك لا يدعم خاصية إملاء النصوص</string>
-    <string name="label_view">عرض</string>
-    <string name="goto_view_favoriate">اذهب إلى عرض كلماتي</string>
-    <string name="dont_show">لا تظهر مرة أخرى</string>
-    <string name="feedback">رأيك</string>
-
-    <string name="daily_word_share_title">كلمة اليوم هي %1$s، تعرّف على معناها</string>
-    <string name="menu_offline_mode">وضع حفظ بيانات النقال</string>
-
-    <string name="create_folder_title">قائمة جديدة</string>
-    <string name="create_folder_holder">من فضلك أدخل اسماً لهذه القائمة</string>
-    <string name="create_folder_confirm">إنشاء</string>
-    <string name="rename_folder_title">إعادة تسمية القائمة</string>
-    <string name="rename">إعادة تسمية</string>
-    <string name="delete_folder_title">مسح القائمة</string>
-    <string name="select_folder_title">اختيار القائمة</string>
-    <string name="menu_folder_move">نقل إلى</string>
-    <string name="delete_folder_tip">إن قمت بمسح هذه القائمة، سيتم نقل الكلمات الموجودة بها إلى "القائمة الافتراضية"</string>
-    <string name="offline_mode_open">النتائج على الإنترنت</string>
-    <string name="offline_mode_closed">النتائج بدون الاتصال الإنترنت فقط. من فضلك قم بتحميل باقة التشغيل بدون الاتصال الإنترنت أولاً.</string>
-    <string name="download_complete_tips">يمكنك الآن البحث عن معان الكلمات بدون الاتصال الإنترنت.</string>
-    <string name="send_suggest_success">لقد تلقينا رأيك، شكراً.</string>
-    <string name="check_language_tips">من فضلك تأكد من لغة البحث الموجودة بالأعلى.</string>
-    <string name="suggest_email_hint">البريد الإلكتروني/رقم الهاتف:</string>
-    <string name="email_short_tip">يجب استخدام بريد إلكتروني أو رقم هاتف صحيح</string>
-    <string name="list_exist_tip">هذه القائمة موجودة مسبقاً</string>
-    <string name="list_create_failed_tip">فشل تكوين القائمة.</string>
-    <string name="list_rename_failed_tip">فشلت إعادة تسمية القائمة.</string>
-    <string name="list_delete_failed_tip">فشل مسح القائمة.</string>
-
-    <string name="skip_ad">تخطي</string>
-
-    <string name="roman_translate">الرومنة</string>
-
+    <string name="menu_offline_mode">Data Saving Mode</string>
+    <!-- 单词本相关 -->
+    <string name="create_folder_title">New List</string>
+    <string name="create_folder_holder">Please enter a name for this list</string>
+    <string name="create_folder_confirm" translatable="false">Create</string>
+    <string name="rename_folder_title">Rename List</string>
+    <string name="rename">Rename</string>
+    <string name="delete_folder_title">Delete List</string>
+    <string name="select_folder_title">Select List</string>
+    <string name="menu_folder_move">Move to</string>
+    <string name="offline_mode_open">Online results.</string>
+    <string name="offline_mode_closed">Only offline results are shown. Please download offline packages first.</string>
+    <string name="instant_translate_open">Now copy and you will get the meaning immediately.</string>
+    <string name="instant_translate_close">Click the floating icon and get the meaning.</string>
+    <string name="download_complete_tips">Now you can look up words offline.</string>
+    <string name="download_damaged_tips">Can\'t find the offline file, please re-download.</string>
+    <string name="send_suggest_success">We have received your feedback. Thanks.</string>
+    <string name="check_language_tips">Please check your search language above.</string>
+    <string name="suggest_email_hint">Email / Phone Number:</string>
+    <string name="email_short_tip">A valid email or phone number is required.</string>
+    <string name="list_exist_tip">This list already exists.</string>
+    <string name="list_create_failed_tip">Failed to create list.</string>
+    <string name="list_rename_failed_tip">Failed to rename list.</string>
+    <string name="list_delete_failed_tip">Failed to delete list.</string>
+    <string name="skip_ad">Skip</string>
+    <string-array name="suggest_type">
+        <item>Feature</item>
+        <item>Interface</item>
+        <item>Bug</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="survey_hint">
+        <item>Very likely</item>
+        <item>Neutral</item>
+        <item>Not likely</item>
+    </string-array>
+    <string-array name="rating_tips">
+        <item>Hated it</item>
+        <item>Disliked it</item>
+        <item>It\'s OK</item>
+        <item>Liked it</item>
+        <item>Loved it</item>
+    </string-array>
     <!-- guide strings -->
     <string-array name="guide_title">
-        <item>اضغط للترجمة</item>
-        <item>ترجمة فورية</item>
+        <item>108 Languages</item>
+        <item>Copy to Translate</item>
         <item>@string/menu_lock_screen</item>
     </string-array>
     <string-array name="guide_content">
-        <item>انسخ للحصول على المعنى</item>
-        <item>ابحث عن الكلمة في شريط الإشعارات</item>
+        <item>Translate between any two languages</item>
+        <item>Copy a sentence in any app to translate</item>
     </string-array>
-
-    <string-array name="suggest_type">
-        <item>نشر</item>
-        <item>الواجهة</item>
-        <item>عطل</item>
-        <item>أخرى</item>
-    </string-array>
-    <string-array name="survey_hint">
-        <item>أؤيد بشدة</item>
-        <item>محايد</item>
-        <item>غير مؤيد</item>
-    </string-array>
-    <string-array name="rating_tips">
-        <item>أكره ذلك</item>
-        <item>لا يعجبني</item>
-        <item>إنه جيد</item>
-        <item>أعجبني</item>
-        <item>أحب ذلك</item>
-    </string-array>
+    <string name="roman_translate">Romanization</string>
+    <string name="select_language_tip">Select from the following languages, you don\'t need to manually change translation direction.</string>
 
     <integer name="default_source_language">1</integer>
-    <integer name="default_target_language">19</integer>
-    <integer name="default_app_language">0</integer>
-    <string name="turn_on_word_lock_screen">فتح شاشة غلق الكلمة</string>
-    <string name="menu_lock_screen">شاشة غلق الكلمة</string>
-    <string name="menu_about_new">جديد</string>
-    <string name="clipboard_copy">نسخ</string>
-    <string name="menu_language">عرض اللغة</string>
-    <string name="already_download">تم التنزيل بالفعل</string>
-    <string name="not_downloaded">متاح للتنزيل</string>
-    <string name="settings_copy_trans">تمكين نسخة للترجمة</string>
-    <string name="settings_instant_trans">نسخة فورية للترجمة</string>
-    <string name="folder_default">افتراضي</string>
-    <string name="instant_translate_close">انقر الزر العائم واحصل على المعنى</string>
-    <string name="instant_translate_open">يمكنك الآن النسخ والحصول على المعنى فوراً</string>
-    <string name="set_language_dialog_title">ضبط لغة القاموس</string>
-    <string name="download_offline_package">تحميل حزمة غير متصلة</string>
-    <string name="set_language_download_tip">ترجم بين لغتك والإنجليزية حتى إذا كنت بدون اتصال</string>
-    <string name="done">تم الانجاز</string>
-    <string name="ocr_fast_word_lock">قفل</string>
-    <string name="ocr_fast_word_lock_cancel">إلغاء الأمر</string>
-    <string name="ocr_fast_word_hint">الهدف \"+\" في الكلمة الانجليزيه</string>
+    <integer name="default_target_language">1</integer>
+    <integer name="default_app_language">2</integer>
 
+    <string name="no_network_result_tip">Internet connection failed. Download offline packages to get translations even when you are offline.</string>
+    <string name="already_download">Already downloaded</string>
+    <string name="not_downloaded">Available for download</string>
+    <string name="settings_notifications">Notification</string>
+    <string name="settings_copy_to_trans">Copy to Translate</string>
+    <string name="settings_lock_screen">Word Lock Screen</string>
+    <string name="settings_notifications_tips">Receive notifications about English learning contents.</string>
+    <string name="settings_quick_search">Quick Translate</string>
+    <string name="push_channel_name">General Notification</string>
+    <string name="push_channel_desc">Receive the notifications about English learning contents.</string>
+    <string name="settings_quick_search_tips">Display the search box in the notification bar.</string>
+    <string name="settings_copy_trans">Enable Copy to Translate</string>
+    <string name="settings_copy_trans_tips">Copy and click the U button to get the translation.</string>
+    <string name="settings_instant_trans">Instant Copy to Translate</string>
+    <string name="settings_instant_trans_tips">Copy and get the translation instantly.</string>
+    <string name="apply_privilege_msg">Turn on \"Permit drawing over other apps\" to enable Copy to Translate</string>
+    <string name="guide_popup">Two-way translation and automatic detection</string>
+    <string name="set_language_dialog_title">Set U Dictionary Language</string>
+    <string name="done">Done</string>
+    <string name="settings_lock_screen_title">Turn on Word Lock Screen</string>
+    <string name="settings_lock_screen_tips">Learn words every time you unlock screen</string>
+    <string name="settings_auto_start_title">Keep Word Lock Screen on</string>
+    <string name="settings_auto_start_tips">Ensure the normal use via turning on the auto start</string>
+    <string name="setting_auto_start_tips">Find U-Dictionary and switch it on</string>
+
+    <!-- 发音 -->
+    <string name="not_support_tts">Your phone doesn\'t support offline pronunciation. Please make sure your network connection.</string>
+    <string name="set_language_download_tip">Translate between your language and English even when you are offline.</string>
+    <string name="download_offline_package">Download Offline Package</string>
+    <string name="download">Download</string>
+    <string name="downloaded_offline_package">You have downloaded offline package.</string>
+    <string name="storage_permission_tip">Downloading offline package needs access permission.</string>
+    <string name="turn_on_word_lock_screen">Turn on Word Lock Screen</string>
+    <string name="folder_default">My Favorite</string>
+    <string name="ocr_fast_word_lock">Lock</string>
+    <string name="ocr_fast_word_lock_cancel">Cancel</string>
+    <string name="ocr_fast_word_hint">Target \"+\" at the English word</string>
+    <string name="ocr_fast_word_hindi_hint">Target \"+\" at the Hindi word</string>
+    <string name="camera_permission_tip">Camera access required.</string>
 
     <!--锁屏查词-->
-    <string name="lock_screen_search_word">ابحث عن الكلمة</string>
-    <string name="more_detail">المزيد</string>
-    <string name="lock_screen">كلمة قفل الشاشة</string>
-    <string name="lock_screen_message">اعرض الكلمة التي اخترتها في قفل الشاشة</string>
-    <string name="enable_lock_screen_title">استخدم كلمة قفل الشاشة</string>
-    <string name="enable_lock_screen_message">اعرض الكلمة والمعنى في قفل الشاشة</string>
-    <string name="select_word_book">اختر قائمة الكلمات</string>
-    <string name="select_word_book_message">اختر الكلمة التي تريد عرضها</string>
+    <string name="lock_screen_search_word">Search Word</string>
+    <string name="more_detail">More</string>
+    <string name="lock_screen">Word Lock Screen</string>
+    <string name="lock_screen_message">Show English words you select on lock screen.</string>
+    <string name="enable_lock_screen_title">Enable Word Lock Screen</string>
+    <string name="enable_lock_screen_message">Show words and meanings on lock screen</string>
+    <string name="select_word_book">Select Word List</string>
+    <string name="select_word_book_message">Choose words you want to show</string>
+
+    <string name="delete_folder_tip">If you delete this list, words in this list will be moved into "Default"</string>
 
     <!-- 拍照查词和翻译 -->
-    <string name="ocr_details">تفاصيل</string>
-    <string name="fold">طوي</string>
-    <string name="unfold">فتح</string>
-    <string name="edit_original_text">تعديل النص الأصلي</string>
-    <string name="ocr_guide_line_tip">اجعل الجملة الانكليزية موازية للسطر المرجعي</string>
-    <string name="ocr_lock_tip">انقر (img) لقفل النتيجة</string>
-    <string name="ocr_unlock_tip">انقر (img) لفتح النتيجة</string>
-    <string name="ocr_region_tip">انقر (img) لترجمة المحتوى</string>
-    <string name="album">مختارات</string>
-    <string name="retake">إعادة تصوير</string>
-    <string name="copy_success">تم النسخ بنجاح</string>
+    <string name="ocr_details">Details</string>
+    <string name="fold">Fold</string>
+    <string name="unfold">Unfold</string>
+    <string name="edit_original_text">Edit Original Text</string>
+    <string name="ocr_guide_line_tip">Parallel to reference lines</string>
+    <string name="ocr_lock_tip">Click (img) to lock the result</string>
+    <string name="ocr_unlock_tip">Click (img) to unlock the result</string>
+    <string name="ocr_region_tip">Click (img) to translate the contents</string>
+    <string name="album">Album</string>
+    <string name="retake">Retake</string>
+    <string name="copy_success">Copied successfully</string>
+    <string name="sponsored">AD</string>
 
     <string-array name="ocr_function">
-        <item>كلمة</item>
-        <item>جملة</item>
+        <item>Word</item>
+        <item>Sentence</item>
     </string-array>
-    <string name="language_recent">مستخدم حديثا</string>
-    <string name="language_all">الكل</string>
+
+    <string-array name="wordFileList">
+        <item>My Favorite</item>
+        <item>Business English Vocabulary</item>
+        <item>Easy Vocabulary</item>
+        <item>Middle Vocabulary</item>
+        <item>Hard Vocabulary</item>
+        <item>TOEFL Core English</item>
+        <item>IELTS Core English</item>
+        <item>SAT Core English</item>
+        <item>GRE Core English</item>
+        <item>GMAT Core English</item>
+    </string-array>
+
+    <string name="guide_hindi_ocr">Translate between Hindi and English</string>
+
+    <string name="book_word_suffix">BookWord</string>
+    <string name="language_recent">Recently used</string>
+    <string name="language_all">All</string>
+    <string name="request_uid_permission_title">Access authorization</string>
+    <string name="request_uid_permission_content">In order to show you personalized premium content, U-Dictionary will collect your mobile ID. \nWe promise that your data will not be disclosed.</string>
+    <string name="language_no_package_tip">Offline package is coming soon. Please be patient!</string>
+    <string name="result_package_coming">Network connection failed. Please try again!</string>
+    <string name="notify_copy_to_trans">Copy to Translate is on</string>
+    <string name="notify_copy_to_trans_desc">More options</string>
+    <string name="label_camera">Camera</string>
+    <string name="label_dialogue">Conversation</string>
 
     <string-array name="dict_tab_titles">
-        <item>الموجزة</item>
-        <item>لاروس الأسبانية</item>
-        <item>أوكسفورد</item>
-        <item>الإندونيسية</item>
-        <item>الكولنز</item>
-        <item>وردنيت</item>
+        <item>Concise</item>
+        <item>Larousse Spanish</item>
+        <item>Oxford</item>
+        <item>Indonesian</item>
+        <item>Collins</item>
+        <item>WordNet</item>
     </string-array>
 
     <!-- 文本翻译 -->
-    <string name="trans_input_hint">أدخل النص المراد ترجمته</string>
-    <string name="trans_paste_hint">أدخل أو ألصق النص المراد ترجمته</string>
-    <string name="trans_paste">ألصق</string>
-    <string name="exceeded_the_character_limit">تجاوزت عدد الأحرف المسموح به</string>
-    <string name="trans_typo_hint">ربما كنت تكتب:</string>
-    <string name="internet_connection_failed">فشل الاتصال بالإنترنت</string>
-    <string name="click_to_refresh">انقر للتحديث</string>
-    <string name="label_history">التاريخ</string>
+    <string name="trans_input_hint">Enter the text to be translated</string>
+    <string name="trans_paste_hint">Enter or paste the text to be translated</string>
+    <string name="trans_paste">paste</string>
+    <string name="exceeded_the_character_limit">Exceeded the character limit</string>
+    <string name="trans_typo_hint">Maybe you are typing:</string>
+    <string name="internet_connection_failed">Internet connection failed</string>
+    <string name="click_to_refresh">Click to Refresh</string>
+    <string name="label_history">History</string>
 
     <!-- 首页 -->
-    <string name="label_daily_word">كلمات اليوم</string>
-    <string name="label_conversation_practice">ممارسة المحادثة</string>
-    <string name="label_spelling_check">التدقيق الإملائي</string>
-    <string name="label_writing_club">نادي الكتابة</string>
-    <string name="label_synonyms_game">لعبة الكلمات</string>
-    <string name="label_selected_article">مقالات مختارة</string>
-    <string name="label_join">انضم</string>
-    <string name="label_camera">الة تصوير</string>
+    <string name="label_daily_word">Words For Today</string>
+    <string name="label_conversation_practice">English Corner</string>
+    <string name="label_spelling_check">Spelling Check</string>
+    <string name="label_writing_club">Writing Club</string>
+    <string name="label_synonyms_game">Word Game</string>
+    <string name="label_selected_article">Selected Articles</string>
+    <string name="label_join">Join</string>
 
     <!-- 我的 -->
-    <string name="label_me">أنا</string>
-    <string name="label_privacy_policy">سياسة الخصوصية</string>
+    <string name="label_me">Me</string>
+    <string name="label_privacy_policy">Privacy Policy</string>
+    <string name="trans_failed_tips">Translation failed. Please try later.</string>
+    <string name="privacy_msg_title">To protect your privacy, we updated our privacy policy. If you want to learn more about this, please click to view. You can also access it on this page anytime.</string>
+    <string name="setting_logout">Log Out</string>
+    <string name="settings_uclass_tips">Display the exam course tab in the tab bar.</string>
+    <string name="settings_uclass_title">Class Tab (India only)</string>
+    <string name="login_now">Log In</string>
+    <string name="welcome_to_u_dictionary">Welcome to U-Dictionary</string>
+    <string name="logout_tip">Are you sure you want to exit?</string>
 
     <!-- 会话翻译 -->
-    <string name="dialogue_function_tip_1">اسحب لأعلى أو انقر لتغيير لغة الترجمة</string>
-    <string name="dialogue_function_tip_2">انقر فوق الزر لتغيير اللغة المستهدفة</string>
-    <string name="dialogue_function_tip_3">اضغط للتحدث</string>
-    <string name="clear_dialogue_history_tip">أكد لحذف جميع السجلات ؟</string>
-    <string name="label_dialogue">محادثة</string>
-    <!-- 一句 -->
-    <string name="one_sentence_guide_tip">انقر على البطاقة لمشاهدة الفيديو</string>
-    <string name="challenge">التحدي</string>
-    <string name="save_success">تم الحفظ في الألبوم.</string>
+    <string name="dialogue_function_tip_1">Swipe up or click to change translation language</string>
+    <string name="dialogue_function_tip_2">Click button to change target language</string>
+    <string name="dialogue_function_tip_3">Click to speak</string>
+    <string name="clear_dialogue_history_tip">Confirm to delete all records?</string>
+    <string name="no_more_data">No more data.</string>
+
+    <!--针对欧盟地区，通知隐私协议,且 只有 英文版本-->
+    <string name="european_union_privacy_policy_notice" tools:ignore="ExtraTranslation">Privacy Policy Notice</string>
+    <string name="european_union_privacy_policy_notice_content" tools:ignore="ExtraTranslation">To learn more about how we protect your privacy, you can click to view our Privacy Policy.</string>
+    <string name="european_union_privacy_policy_notice_disagree" tools:ignore="ExtraTranslation">Disagree</string>
+    <string name="european_union_privacy_policy_notice_agree" tools:ignore="ExtraTranslation">Agree</string>
+    <string name="european_union_privacy_policy_notice_toast_text" tools:ignore="ExtraTranslation">Please click “AGREE” to use U-Dictionary.</string>
 
     <!-- 释义报错 -->
-    <string name="error_report_title">الإبلاغ عن مشاكل</string>
+    <string name="error_report_title">Report Problems</string>
     <string-array name="report_error_type">
-        <item>تعريف أو ترجمة خاطئة</item>
-        <item>جمل أمثلة غير مناسبة</item>
-        <item>الإبلاغ عن مشاكل أخرى</item>
+        <item>Wrong definition or translation</item>
+        <item>Bad example sentences</item>
+        <item>Report other issues</item>
     </string-array>
-    <string name="report">تقرير</string>
-    <string name="optional">اختياري</string>
-    <string name="comments_or_suggestion">تعليقات واقتراحات؟</string>
-    <string name="thank_suggestion">شكراً على ملاحظاتكم القيمة.</string>
-    <string name="submission_error">فشل الإرسال. يرجى المحاولة مرة أخرى.</string>
+    <string name="report">Report</string>
+    <string name="optional">Optional</string>
+    <string name="comments_or_suggestion">Comments or Suggestion?</string>
+    <string name="thank_suggestion">Thank you for your valuable feedback.</string>
+    <string name="submission_error">Submission failed. Please try again.</string>
+
+    <!-- 一句 -->
+    <string name="challenge">Challenge</string>
+    <string name="one_sentence_guide_tip">Click on the card to watch the video</string>
+    <string name="save_success">Saved to the album.</string>
+    <string name="loading_done">The end.</string>
+    <string name="no_permission_save_image">Saving pictures requires access to storage</string>
 
     <!-- 跟读 -->
-    <string name="try_to_challenge_it">حاول أن تتحداها.</string>
+    <string name="try_to_challenge_it">Try to challenge it.</string>
+
+    <!-- 首页功能入口-->
+    <string name="translate_picture_desc">Translate picture</string>
+    <string name="translate_dialogue_desc">Translate dialogue</string>
 
     <!-- 任意翻译 -->
-    <string name="foreign_language">لغة الترجمة التي تستخدمها عادة</string>
-    <string name="primary_language">لغتك الأساسية</string>
-    <string name="magic_translate">الترجمة السحرية</string>
-    <string name="magic_tour_desc">يمكنك الآن الترجمة داخل أي تطبيق. والدردشة بحرية بدون أي حدود.</string>
-    <string name="magic_setting_desc">ترجم في أي تطبيق باستخدام كرة الترجمة السحرية</string>
-    <string name="take_a_tour">خذ جولة</string>
-    <string name="magic_try">جرب</string>
-    <string name="authorize_magic_translate">من فضلك قم بالسماح بالأذونات التالية لاستخدام خاصية الترجمة السحرية</string>
-    <string name="auth_display_title">الظهور أمام التطبيقات الأخرى</string>
-    <string name="auth_display_desc">لإظهار الترجمة على الفور</string>
-    <string name="auth_access_title">إمكانية الوصول</string>
-    <string name="auth_access_desc">تمكين خاصية الترجمة السحرية</string>
-    <string name="start">بدء</string>
-    <string name="enable_magic_translate">تمكين خاصية الترجمة السحرية</string>
-    <string name="magic_enable_desc">اسحب كرة الترجمة السحرية إلى المحتوى الذي تريد ترجمته</string>
-    <string name="learn_more">تعرف على المزيد</string>
-    <string name="learn_more_desc">تعرف على كيفية استخدام هذه الخاصية</string>
-    <string name="magic_intro_title_1">اقرأ واكتب</string>
-    <string name="magic_intro_content_1_1">اسحب كرة الترجمة السحرية إلى موضع المحتوى التي تريد ترجمته.</string>
-    <string name="magic_intro_content_1_2">اسحب كرة الترجمة السحرية إلى مربع الحوار وسيتم ترجمة النصوص مباشرة.</string>
-    <string name="magic_intro_title_2">ترجمة محتوى مخصص</string>
-    <string name="magic_intro_content_2">للحصول على الترجمة انسخ كلمة أو جملة أو انقر فوق كرة الترجمة السحرية </string>
-    <string name="magic_intro_title_3">تحريك كرة الترجمة السحرية</string>
-    <string name="magic_intro_content_3">أمسك كرة الترجمة السحرية واسحبها إلى الموضع المطلوب.</string>
-    <string name="magic_intro_title_4">الترجمة السحرية  (.v.s) الترجمة بالنسخ</string>
-    <string name="magic_intro_content_4">ميزتان يمكن استخدام كلا منهما بشكل منفصل</string>
-    <string name="copy_trans_intro_content_2">انسخ النص واحصل على الترجمة فورًا عن طريق تمكين هذا الخاصية</string>
-    <string name="quick_trans_hint">أدخل النص المراد ترجمته</string>
-    <string name="notifi_magic_title">الترجمة السحرية</string>
-    <string name="ask_access_auth_title">استخدام الترجمة السحرية؟</string>
-    <string name="ask_access_auth_content">تشغيل خيار إمكانية الوصول من أجل تمكين واستخدام هذه الخاصية</string>
-    <string name="ask_disp_auth_title">استخدام الترجمة بالنسخ؟</string>
-    <string name="ask_disp_auth_content"> تشغيل خيار (الظهور أمام التطبيقات الأخرى) من أجل تمكين واستخدام هذه الخاصية</string>
-    <string name="ask_access_tip">ابحث عن U-Dictionary وقم بتشغيله</string>
-    <string name="magic_trans_no_network">شبكة  الإنترنت غير متوفرة. يرجى التحقق وإعادة المحاولة.</string>
-    <string name="magic_trans_failed">فشلت عملية الترجمة. حاول مرة اخرى.</string>
-    <string name="magic_menu_enter">أدخل  </string>
-    <string name="magic_menu_setting">إعدادات</string>
-    <string name="magic_menu_close">إغلق</string>
-    <string name="magic_drag_tip"> اسحب كرة الترجمة السحرية إلى الموضع المطلوب.</string>
-    <string name="accessibility_desc">قم بتشغيل هذه الخدمة لتمكين U-Dictionary من قراءة الصفحة وإعطاءك الترجمة للمحتوى الذي تريده، وترجمة النص  الموجود في مربع الحوار مباشرة  إلى اللغة التي تريدها.</string>
-    <string name="permission_camera_first_tip">تتطلب ترجمة الكاميرا استخدام الكاميرا.</string>
-    <string name="permission_camera_second_tip">يرجى تمكين الإعدادات>أذونات>الكاميرا لاستخدام ترجمة الكاميرا</string>
-    <string name="permission_storage_tip"><![CDATA[Please enable Settings > Permissions > Storage to save pictures]]></string>
-    <string name="login_now">تسجيل الدخول</string>
-    <string name="welcome_to_u_dictionary">مرحبا بكم في U-Dictionary </string>
-    <string name="new_version_detected">تم اكتشاف نسخة جديدة</string>
+    <string name="foreign_language">Language you translate most often</string>
+    <string name="primary_language">Your primary language</string>
+    <string name="magic_translate">Magic Translate</string>
+    <string name="magic_tour_desc">Now you can translate in any app. Chat freely with no borders</string>
+    <string name="magic_setting_desc">Translate in any app with the magic translation ball</string>
+    <string name="take_a_tour">TAKE A TOUR</string>
+    <string name="magic_try">TRY</string>
+    <string name="authorize_magic_translate">Authorize Magic Translate</string>
+    <string name="auth_display_title">Display over other apps</string>
+    <string name="auth_display_desc">to show translation instantly </string>
+    <string name="auth_access_title">Accessibility</string>
+    <string name="auth_access_desc">to enable Magic Translate</string>
+    <string name="start">Start</string>
+    <string name="enable_magic_translate">Enable Magic Translate</string>
+    <string name="magic_enable_desc">Drag the magic ball to the content you want to translate</string>
+    <string name="learn_more">Learn More</string>
+    <string name="learn_more_desc">Learn about how to use this feature</string>
+    <string name="magic_intro_title_1">To Read &amp; To Write</string>
+    <string name="magic_intro_content_1_1">Drag the magic ball to the position of the contents that you want to translate.</string>
+    <string name="magic_intro_content_1_2">Drag the magic ball to the input box. The texts will be converted into the translation directly.</string>
+    <string name="magic_intro_title_2">To Target Certain Text</string>
+    <string name="magic_intro_content_2">Copy a word or sentence and click the translation ball to get the translation.</string>
+    <string name="magic_intro_title_3">To Move Magic Ball</string>
+    <string name="magic_intro_content_3">Hold the magic ball and drag it to the desired position.</string>
+    <string name="magic_intro_title_4">Magic Translate v.s. Copy to Translate</string>
+    <string name="magic_intro_content_4">These two features can be used separately.</string>
+    <string name="copy_trans_intro_content_2">Copy and get the translation instantly by enabling this mode</string>
+    <string name="quick_trans_hint">Enter text to translate</string>
+    <string name="notifi_magic_title">Magic</string>
+    <string name="ask_access_auth_title">Use Magic Translate?</string>
+    <string name="ask_access_auth_content">Turn on Accessibility to enable this feature.</string>
+    <string name="ask_disp_auth_title">Use Copy to Translate?</string>
+    <string name="ask_disp_auth_content">Allow display over other apps to enable this feature.</string>
+    <string name="ask_access_tip">Find U-Dictionary and turn it on</string>
+    <string name="network_unavailable">Network unavailable. Please check and retry.</string>
+    <string name="magic_trans_failed">Translation failed. Please try again.</string>
+    <string name="magic_menu_enter">Enter</string>
+    <string name="magic_menu_setting">Settings</string>
+    <string name="magic_menu_close">Close</string>
+    <string name="magic_drag_tip">Drag the magic ball to the desired position.</string>
+    <string name="accessibility_desc">Turn on this service to enable U-Dictionary to access the page you want to translate and directly convert the text in the input box to the translation.</string>
+    <string name="magic_not_support_under_Lolilop">Your phone doesn\'t support this feature.</string>
+    <string name="auth_background_title">Start in background</string>
+    <string name="auth_background_desc">to enable Copy to Translate</string>
+    <!-- 权限提示 -->
+    <string name="permission_camera_first_tip">Camera translation requires use of the camera</string>
+    <string name="permission_camera_second_tip"><![CDATA[Please enable Settings > Permissions > Camera to use camera translation]]></string>
+    <string name="permission_storage_tip"><![CDATA[Please enable Settings > Permissions > Storage to save]]></string>
 
-    <string name="all">الكل</string>
-    <string name="settings_uclass_title">علامة تبويب التدريبية(الهند فقط)</string>
-    <string name="notify_copy_to_trans_desc">المزيد من الخيارات</string>
-    <string name="notify_copy_to_trans">النسخة للترجمة قيد التشغيل</string>
-    <string name="menu_clear_history_tips">امسح كل سجل البحث أسفل مربع البحث.</string>
-    <string name="settings_notifications_tips">تلقي الإخطارات حول محتويات تعلم اللغة الإنجليزية.</string>
-    <string name="card_anto">متضادات</string>
-    <string name="meaning_prefix">لمعنى</string>
-    <string name="your_primary_language">لغتك الأصلية</string>
-    <string name="settings_instant_trans_tips">انسخ للحصول على الترجمة فورا</string>
-    <string name="settings_quick_search_tips">عرض مربع البحث في شريط الإعلام.</string>
-    <string name="settings_uclass_tips">عرض علامة تبويب الدورة الاختبارات في شريط علامات التبويب.</string>
-    <string name="card_thesaurus">مترادفات &#160;&amp;&#160; متضادات</string>
-    <string name="card_syno">مترادفات </string>
-    <string name="menu_clipboard_search_tips">انسخ كلمة أو جملة في أي تطبيق للحصول على الترجمة.</string>
-    <string name="detect_lang">اكتشاف اللغة</string>
-    <string name="settings_copy_trans_tips">انسخ و اضغط كرة الترجمة للحصول على الترجمة.</string>
+    <!--main tab title-->
+    <string name="dict_tab_text">Dict</string>
+    <string name="trans_tab_text">Translation</string>
+    <string name="uclass_tab_text">Uclass</string>
+    <string name="my_tab_text">My</string>
+
+    <!--update dialog-->
+    <string name="new_version_detected">New Version Detected</string>
+
+    <!--同义词，反义词-->
+    <string name="meaning_prefix">for the meaning of</string>
+
+
+    <string name="all">All</string>
+    <string name="your_primary_language">Your native language</string>
+    <string name="detect_lang">Detect language</string>
+
+    <string name="first_video">Already the first video.</string>
+    <string name="last_video">Already the last video.</string>
+    <string name="switch_to_Sequential">Started to play all sequentially.</string>
+    <string name="switch_to_single">Started to play it repeatedly.</string>
+    <string name="slide">Swipe</string>
+    <string name="load_fail">Failed to load. Please try again!</string>
+
 </resources>
