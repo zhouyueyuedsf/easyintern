@@ -1,19 +1,19 @@
 package com.youdao.ui;
 
+import com.intellij.icons.AllIcons;
 import com.intellij.ui.table.JBTable;
-import com.twelvemonkeys.imageio.metadata.tiff.IFD;
 import com.youdao.adapter.KeySettingTableAdapter;
+import com.youdao.model.AndroidStringXmlModel;
 import com.youdao.model.ConfigModel;
 import com.youdao.model.TableDataModel;
 import com.youdao.util.Constant;
+import com.youdao.util.XmlUtil;
 import com.youdao.yexcel.ExcelUtil;
 import com.youdao.yexcel.ModelGenCallBack;
 import org.apache.commons.io.FileUtils;
 
-import javax.sql.rowset.spi.XmlReader;
 import javax.swing.*;
 import javax.swing.event.*;
-import javax.xml.parsers.SAXParser;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
@@ -191,24 +191,16 @@ public class KeySettingDialog extends JDialog {
             if (!KEY_COL_HEAD_NAME.equals(entry.getKey())) {
                 Vector<String> outValueVector = entry.getValue();
                 File outFile = new File(outPutPath + "/strings-" + abbrMap.get(entry.getKey()) + ".xml");
-                int size = outputKeyVector.size();
-                for (int i = 0; i < size; i++) {
+                String filledXmlString = getFilledXmlString(outputKeyVector, arrStartIndex, arrEndIndex, arrAnchorIndex, outValueVector);
+                if (outFile.exists()) {
+                    // 替换逻辑
+                    AndroidStringXmlModel newAndroidStringXmlModel = XmlUtil.INSTANCE.readStringsXmlByString(filledXmlString);
+                    AndroidStringXmlModel oldAndroidStringXmlModel = XmlUtil.INSTANCE.readStringsXmlByPath(outFile.getPath());
+                    // 进行新旧比较的算法
+                } else {
                     try {
-                        if (i >= arrStartIndex && i <= arrEndIndex) {
-                            StringBuilder arrBuilder = new StringBuilder();
-                            for (int k = i; k <= arrEndIndex; k++) {
-                                if (k == arrAnchorIndex) {
-                                    arrBuilder.insert(0, String.format("<string-array name=\"%s\">\n", outputKeyVector.get(k)));
-                                }
-                                arrBuilder.append(String.format("<item>%s</item>\n", outValueVector.get(k)));
-                            }
-                            arrBuilder.append("</string-array>");
-                            i = arrEndIndex;
-                            FileUtils.write(outFile, arrBuilder.toString(), Charset.defaultCharset(), true);
-                            continue;
-                        }
-                        FileUtils.write(outFile, String.format("<string key = \"%s\">%s</string>\n", outputKeyVector.get(i), outValueVector.get(i)).toString(),
-                                Charset.defaultCharset(), true);
+                        FileUtils.write(outFile, filledXmlString,
+                                    Charset.defaultCharset(), false);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -216,6 +208,31 @@ public class KeySettingDialog extends JDialog {
             }
         }
         dispose();
+    }
+
+    private String getFilledXmlString(Vector<String> outputKeyVector, int arrStartIndex, int arrEndIndex, int arrAnchorIndex, Vector<String> outValueVector) {
+        StringBuilder filledXmlStringBuilder = new StringBuilder();
+        int size = outputKeyVector.size();
+        for (int i = 0; i < size; i++) {
+            if (i >= arrStartIndex && i <= arrEndIndex) {
+                StringBuilder arrBuilder = new StringBuilder();
+                for (int k = i; k <= arrEndIndex; k++) {
+                    if (k == arrAnchorIndex) {
+                        arrBuilder.insert(0, String.format("<string-array name=\"%s\">\n", outputKeyVector.get(k)));
+                    }
+                    arrBuilder.append(String.format("<item>%s</item>\n", outValueVector.get(k)));
+                }
+                arrBuilder.append("</string-array>");
+                i = arrEndIndex;
+                filledXmlStringBuilder.append(arrBuilder);
+//                            FileUtils.write(outFile, arrBuilder.toString(), Charset.defaultCharset(), true);
+                continue;
+            }
+            filledXmlStringBuilder.append(String.format("<string key = \"%s\">%s</string>\n", outputKeyVector.get(i), outValueVector.get(i)));
+//                        FileUtils.write(outFile, String.format("<string key = \"%s\">%s</string>\n", outputKeyVector.get(i), outValueVector.get(i)).toString(),
+//                                Charset.defaultCharset(), true);
+        }
+        return filledXmlStringBuilder.toString();
     }
 
 
