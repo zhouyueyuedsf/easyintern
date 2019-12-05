@@ -6,12 +6,12 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AndroidStringXmlModel {
     @XmlElement(name = "string")
-    private List<StringMapModel> stringMapModel;
+    private List<StringMapModel> stringMapModelList;
     @XmlElement(name = "string-array")
     private List<StringArrayMapModel> stringArrayMapModels;
 
     @XmlAccessorType(XmlAccessType.FIELD)
-    private static class StringMapModel {
+    public static class StringMapModel {
         @XmlAttribute(name = "name")
         String name;
         @XmlValue
@@ -45,7 +45,7 @@ public class AndroidStringXmlModel {
     }
 
     @XmlAccessorType(XmlAccessType.FIELD)
-    private static class StringArrayMapModel {
+    public static class StringArrayMapModel {
         @XmlAttribute(name = "name")
         String name;
         List<String> item;
@@ -67,12 +67,12 @@ public class AndroidStringXmlModel {
         }
     }
 
-    public List<StringMapModel> getStringMapModel() {
-        return stringMapModel;
+    public List<StringMapModel> getStringMapModelList() {
+        return stringMapModelList;
     }
 
-    public void setStringMapModel(List<StringMapModel> stringMapModel) {
-        this.stringMapModel = stringMapModel;
+    public void setStringMapModelList(List<StringMapModel> stringMapModelList) {
+        this.stringMapModelList = stringMapModelList;
     }
 
     public List<StringArrayMapModel> getStringArrayMapModels() {

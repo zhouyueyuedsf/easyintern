@@ -1,9 +1,22 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Order>
-    <string-array id="11021">
-        <name>Apple</name>
-    </string-array>
-    <string-array id="11022">
-        <name>Banana</name>
-    </string-array>
-</Order>
+<resources><string name = "Synonyms_&amp;_Antonyms">Synonyms&#160;&amp;&#160;Antonyms</string>
+    <string name = "Synonyms">Synonyms</string>
+    <string name = "Antonyms">Antonyms</string>
+    <string name = "for_the_meaning_of">for&#160;the&#160;meaning&#160;of&#160;“good”</string>
+    <string name = "All">All</string>
+    <string name = "Detect_language">Detect&#160;language</string>
+    <string name = "Copy_to_Translate_is">Copy&#160;to&#160;Translate&#160;is&#160;on</string>
+    <string name = "More_options">More&#160;options</string>
+    <string name = "New_Version_Detected">New&#160;Version&#160;Detected</string>
+    <string name = "Concise（the_tab_name_of">Concise（the&#160;tab&#160;name&#160;of&#160;Concise&#160;Definition）</string>
+    <string name = "Larousse_Spanish（the_tab_name">Larousse&#160;Spanish（the&#160;tab&#160;name&#160;of&#160;Larousse&#160;Spanish&#160;Dictionary）</string>
+    <string name = "Oxford（the_tab_name_of">Oxford（the&#160;tab&#160;name&#160;of&#160;Oxford&#160;Dictionary）</string>
+    <string name = "Indonesian（the_tab_name_of">Indonesian（the&#160;tab&#160;name&#160;of&#160;Indonesian&#160;Dictionary）</string>
+    <string name = "Collins（the_tab_name_of">Collins（the&#160;tab&#160;name&#160;of&#160;Collins&#160;Dictionary）</string>
+    <string name = "WordNet（the_tab_name_of">WordNet（the&#160;tab&#160;name&#160;of&#160;WordNet&#160;Dictionary）</string>
+    <string name = "Your_native_language">Your&#160;native&#160;language</string>
+    <string name = "1._Upgraded_the_feature">1.&#160;Upgraded&#160;the&#160;feature&#160;for&#160;Synonyms&#160;&amp;&#160;Antonyms,&#160;and&#160;Bilingual&#160;Sentences&#160;to&#160;help&#160;you&#160;learn&#160;English&#160;more&#160;comprehensively.
+        2.&#160;Optimized&#160;the&#160;search&#160;results&#160;of&#160;your&#160;native&#160;language,&#160;which&#160;will&#160;help&#160;you&#160;find&#160;the&#160;English&#160;words&#160;you&#160;want&#160;to&#160;use&#160;quickly.
+        3.&#160;Fixed&#160;the&#160;bug&#160;of&#160;Copy&#160;to&#160;Translate&#160;by&#160;adding&#160;a&#160;notification&#160;for&#160;this&#160;feature.</string>
+    <string name = "Clear_all_the_search">Clear&#160;all&#160;the&#160;search&#160;history&#160;below&#160;the&#160;search&#160;box.</string>
+    <string name = "Copy_a_word_or">Copy&#160;a&#160;word&#160;or&#160;sentence&#160;in&#160;any&#160;app&#160;to&#160;get&#160;the&#160;translation.</string>
+    </resources>

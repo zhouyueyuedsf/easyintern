@@ -8,6 +8,7 @@ import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.ui.TextBrowseFolderListener;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.youdao.model.ConfigModel;
+import com.youdao.util.RouterKt;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -84,9 +85,7 @@ public class ConfigDialog extends JDialog {
         configModel.includeHead = checkBoxIncludeHead.isSelected();
         configModel.sheetIndex = Integer.parseInt(textFieldSheetIndex.getText());
         if (configModel.checkModel()) {
-            KeySettingDialog settingDialog = new KeySettingDialog(configModel);
-            settingDialog.pack();
-            settingDialog.setVisible(true);
+            RouterKt.routerKeySettingDialog(configModel);
         } else {
             Messages.showMessageDialog(project, "Configuration error, please check it",  "Error", Messages.getErrorIcon());
         }
