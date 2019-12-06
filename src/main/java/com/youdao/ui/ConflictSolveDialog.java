@@ -1,7 +1,11 @@
 package com.youdao.ui;
 
+import com.intellij.ui.components.JBList;
+import com.intellij.ui.components.JBPanel;
+import com.intellij.ui.components.JBTextField;
 import com.youdao.adapter.ConflictListAdapter;
 import com.youdao.model.AndroidStringXmlModel;
+import com.youdao.util.UIUtilKt;
 import kotlin.Pair;
 import org.jsoup.helper.StringUtil;
 
@@ -11,13 +15,15 @@ import java.util.ArrayList;
 
 public class ConflictSolveDialog extends JDialog {
     private JPanel contentPane;
-    private JTextField textFieldNewName;
-    private JTextField textFieldOldValue;
-    private JTextField textFieldOldName;
-    private JTextField textFieldNewValue;
+    private JBTextField textFieldNewName;
+    private JBTextField textFieldOldValue;
+    private JBTextField textFieldOldName;
+    private JBTextField textFieldNewValue;
+
     private JButton buttonOk;
     private JButton buttonCancel;
-    private JList listInfo;
+    private JBList listInfo;
+    private JButton buttonFinish;
     private CallBack mCallBack;
     private AndroidStringXmlModel mNewAndroidStringXmlModel;
     private AndroidStringXmlModel mOldAndroidStringXmlModel;
@@ -27,14 +33,18 @@ public class ConflictSolveDialog extends JDialog {
 
     }
     public ConflictSolveDialog(AndroidStringXmlModel newAndroidStringXmlModel, AndroidStringXmlModel oldAndroidStringXmlModel, ArrayList<kotlin.Pair<Integer, Integer>>[] datas) {
+        this(newAndroidStringXmlModel, oldAndroidStringXmlModel, datas, null);
+    }
+
+    public ConflictSolveDialog(AndroidStringXmlModel newAndroidStringXmlModel, AndroidStringXmlModel oldAndroidStringXmlModel, ArrayList<kotlin.Pair<Integer, Integer>>[] datas, CallBack callBack) {
         setContentPane(contentPane);
         setModal(true);
-        setTitle("配置");
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        UIUtilKt.center(this, 402, 214);
+        setTitle("冲突解决对话框");
         mNewAndroidStringXmlModel = newAndroidStringXmlModel;
         mOldAndroidStringXmlModel = oldAndroidStringXmlModel;
         mPosDatas = datas;
-
+        mCallBack = callBack;
         fillData();
         initListener();
     }
@@ -68,10 +78,10 @@ public class ConflictSolveDialog extends JDialog {
         }
     }
 
-    public int indexToNewPos(int index) {
+    private int indexToNewPos(int index) {
         return mPosDatas[0].get(index).getFirst();
     }
-    public int indexToOldPos(int index) {
+    private int indexToOldPos(int index) {
         return mPosDatas[0].get(index).getSecond();
     }
 
@@ -89,11 +99,6 @@ public class ConflictSolveDialog extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 // 替换，用新值去替换旧值
                 setOldName(textFieldOldName.getText(), textFieldOldValue.getText());
-//                mNewStringMapModel.setName(textFieldNewName.getText());
-//                mNewStringMapModel.setName(textFieldNewValue.getText());
-//                mOldStringMapModel.setName(textFieldOldName.getText());
-//                mOldStringMapModel.setName(textFieldOldValue.getText());
-//                mCallBack.onOK(ConflictSolveDialog.this, mNewStringMapModel, mOldStringMapModel);
             }
         });
 
@@ -102,9 +107,24 @@ public class ConflictSolveDialog extends JDialog {
                 dispose();
             }
         });
+        buttonFinish.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (mCallBack != null) {
+                    mCallBack.onOK(ConflictSolveDialog.this, mOldAndroidStringXmlModel);
+                } else {
+                    dispose();
+                }
+            }
+        });
+        contentPane.registerKeyboardAction(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
     public interface CallBack {
-        void onOK(JDialog dialog, AndroidStringXmlModel.StringMapModel newStringMapModel, AndroidStringXmlModel.StringMapModel oldStringMapModel);
+        void onOK(JDialog dialog, AndroidStringXmlModel outputModel);
     }
 }

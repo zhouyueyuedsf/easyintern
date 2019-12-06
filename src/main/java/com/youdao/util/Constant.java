@@ -8,7 +8,7 @@ public class Constant {
         sAbbrProviderMap = new HashMap<>();
         sAbbrProviderMap.put("English", "en");
         sAbbrProviderMap.put("Arabic", "ar");
-        sAbbrProviderMap.put("Bengali", "bn");
+        sAbbrProviderMap.put("Bangla", "bn");
         sAbbrProviderMap.put("Spanish", "es");
         sAbbrProviderMap.put("Hindi", "hi");
         sAbbrProviderMap.put("Indonesian", "in");

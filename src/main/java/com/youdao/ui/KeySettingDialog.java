@@ -1,6 +1,7 @@
 package com.youdao.ui;
 
 import com.intellij.openapi.vcs.history.VcsRevisionNumber;
+import com.intellij.ui.components.JBScrollPane;
 import com.intellij.ui.table.JBTable;
 import com.youdao.adapter.KeySettingTableAdapter;
 import com.youdao.model.AndroidStringXmlModel;
@@ -8,6 +9,7 @@ import com.youdao.model.ConfigModel;
 import com.youdao.model.TableDataModel;
 import com.youdao.util.Constant;
 import com.youdao.util.RouterKt;
+import com.youdao.util.UIUtilKt;
 import com.youdao.util.XmlUtil;
 import com.youdao.yexcel.ExcelUtil;
 import com.youdao.yexcel.ModelGenCallBack;
@@ -16,8 +18,10 @@ import org.apache.commons.io.FileUtils;
 
 import javax.swing.*;
 import javax.swing.event.*;
+import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -32,6 +36,7 @@ public class KeySettingDialog extends JDialog {
     private JButton buttonFinish;
     private JButton buttonPre;
     private JBTable tableKeySetting;
+    private JScrollPane scrollPaneContainer;
     private TableDataModel dataModel = new TableDataModel();
     private KeySettingTableAdapter adapter;
     private ConfigModel config;
@@ -54,6 +59,11 @@ public class KeySettingDialog extends JDialog {
     private void initData(Vector<Vector<String>> rawData) {
         if (config.includeHead) {
             headNameRow = rawData.remove(0);
+        } else {
+            headNameRow = ExcelUtil.readHead(config);
+            if (headNameRow == null) {
+                headNameRow = new Vector<>();
+            }
         }
         for (String name : headNameRow) {
             String abbr = Constant.sAbbrProviderMap.get(name);
@@ -87,7 +97,6 @@ public class KeySettingDialog extends JDialog {
      * keyCol的生成是由referCol决定的，默认给出x_x格式
      */
     private void initKeyCol() {
-
         int arrStartIndex = calStringArrIndex(config.stringArrayArea.startRow, config.validArea.startRow);
         int arrEndIndex = calStringArrIndex(config.stringArrayArea.endRow, config.validArea.startRow);
         int arrAnchorIndex = getAnchorIndex(arrStartIndex, arrEndIndex);
@@ -105,11 +114,14 @@ public class KeySettingDialog extends JDialog {
                 int len = keyString.length;
                 int maxLen = Math.min(len, MAX_LEN);
                 for (int j = 0; j < maxLen - 1; j++) {
+                    if (keyString[j].contains("&")) {
+                        continue;
+                    }
                     keyBuilder.append(keyString[j]);
                     keyBuilder.append("_");
                 }
                 keyBuilder.append(keyString[maxLen - 1]);
-                keyCol.add(keyBuilder.toString());
+                keyCol.add(keyBuilder.toString().toLowerCase());
             }
         }
         headNameAndColMap.put(KEY_COL_HEAD_NAME, keyCol);
@@ -118,9 +130,9 @@ public class KeySettingDialog extends JDialog {
     public KeySettingDialog(ConfigModel configModel) {
         this.config = configModel;
         setContentPane(contentPane);
+        UIUtilKt.center(this, 469, 360);
         setModal(true);
         getRootPane().setDefaultButton(buttonFinish);
-
         adapter = new KeySettingTableAdapter();
         ExcelUtil.readSpecialArea(configModel, new ModelGenCallBack() {
             @Override
@@ -202,7 +214,7 @@ public class KeySettingDialog extends JDialog {
                 } else {
                     suffix = "-" + suffix;
                 }
-                File outFile = new File(outPutPath + "/strings" + suffix + ".xml");
+                File outFile = new File(outPutPath + "/values" + suffix + "/strings.xml");
                 String filledXmlString = getFilledXmlString(outputKeyVector, arrStartIndex, arrEndIndex, arrAnchorIndex, outValueVector);
                 if (outFile.exists()) {
                     // 替换逻辑
@@ -212,7 +224,12 @@ public class KeySettingDialog extends JDialog {
                     ArrayList<Pair<Integer, Integer>> datas[] = XmlUtil.INSTANCE.syncXmlModelAndReturnUnAppendData(newAndroidStringXmlModel, oldAndroidStringXmlModel, outFile);
                     final ArrayList<Pair<Integer, Integer>> stringConflictPosInfo = datas[0];
                     // 进行新旧比较的算法
-                    RouterKt.routerConflictSolveDialog(newAndroidStringXmlModel, oldAndroidStringXmlModel, datas);
+                    RouterKt.routerConflictSolveDialog(newAndroidStringXmlModel, oldAndroidStringXmlModel, datas, new ConflictSolveDialog.CallBack() {
+                        @Override
+                        public void onOK(JDialog dialog, AndroidStringXmlModel outputModel) {
+                            XmlUtil.INSTANCE.writeModelToXml(outputModel, outFile.getPath(), false);
+                        }
+                    });
                 } else {
                     try {
                         FileUtils.write(outFile, filledXmlString,
@@ -235,9 +252,9 @@ public class KeySettingDialog extends JDialog {
                 for (int k = i; k <= arrEndIndex; k++) {
                     if (k == arrAnchorIndex) {
                         //&#160;&amp;&#160;
-                        arrBuilder.insert(0, String.format("<string-array name=\"%s\">\n", XmlUtil.INSTANCE.toTrim(outputKeyVector.get(k))));
+                        arrBuilder.insert(0, String.format("<string-array name=\"%s\">\n", outputKeyVector.get(k)));
                     }
-                    arrBuilder.append(String.format("<item>%s</item>\n", XmlUtil.INSTANCE.toTrim(outputKeyVector.get(k))));
+                    arrBuilder.append(String.format("<item>%s</item>\n", XmlUtil.INSTANCE.toTrim(outValueVector.get(k))));
                 }
                 arrBuilder.append("</string-array>");
                 i = arrEndIndex;
@@ -247,7 +264,7 @@ public class KeySettingDialog extends JDialog {
             }
 
             filledXmlStringBuilder.append(String.format("<string name = \"%s\">%s</string>\n",
-                    XmlUtil.INSTANCE.toTrim(outputKeyVector.get(i)), XmlUtil.INSTANCE.toTrim(outValueVector.get(i))));
+                    outputKeyVector.get(i), XmlUtil.INSTANCE.toTrim(outValueVector.get(i))));
 //                        FileUtils.write(outFile, String.format("<string key = \"%s\">%s</string>\n", outputKeyVector.get(i), outValueVector.get(i)).toString(),
 //                                Charset.defaultCharset(), true);
         }

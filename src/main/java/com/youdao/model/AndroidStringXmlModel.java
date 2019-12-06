@@ -2,6 +2,19 @@ package com.youdao.model;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;
+
+/**
+ * @XmlRootElement(name = "resources") 根元素为<resources></resource>
+ * @XmlAccessorType 指定映射的字段类型
+ * XmlAccessType.FIELD：映射这个类中的所有字段到XML
+ * XmlAccessType.PROPERTY：映射这个类中的属性（get/set方法）到XML
+ * XmlAccessType.PUBLIC_MEMBER：将这个类中的所有public的field或property同时映射到XML（默认）
+ * XmlAccessType.NONE：不映射
+ *
+ * @XmlElement(name = "string") 映射根元素下的标签为<string>的子元素
+ * @XmlAttribute(name = "name") 映射元素下的属性为name到xml,<string name = "xxx"></string>
+ * @XmlValue 映射元素下的值,如<string name="">xxx</>，xxx表示该标签注释下的字段的值
+ */
 @XmlRootElement(name = "resources")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AndroidStringXmlModel {
@@ -82,5 +95,6 @@ public class AndroidStringXmlModel {
     public void setStringArrayMapModels(List<StringArrayMapModel> stringArrayMapModels) {
         this.stringArrayMapModels = stringArrayMapModels;
     }
+
 }
 

@@ -9,8 +9,10 @@ import com.intellij.openapi.ui.TextBrowseFolderListener;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.youdao.model.ConfigModel;
 import com.youdao.util.RouterKt;
+import com.youdao.util.UIUtilKt;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 public class ConfigDialog extends JDialog {
@@ -36,6 +38,7 @@ public class ConfigDialog extends JDialog {
     public ConfigDialog(AnActionEvent anActionEvent) {
         project = anActionEvent.getProject();
         setContentPane(contentPane);
+        UIUtilKt.center(this, 469, 360);
         setModal(true);
         setTitle("配置");
         getRootPane().setDefaultButton(buttonNext);
@@ -95,4 +98,6 @@ public class ConfigDialog extends JDialog {
         // add your code here if necessary
         dispose();
     }
+
+
 }

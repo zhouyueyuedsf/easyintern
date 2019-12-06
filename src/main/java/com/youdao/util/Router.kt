@@ -20,3 +20,7 @@ fun JDialog.visible() {
 fun routerConflictSolveDialog(newStringMapModel: AndroidStringXmlModel, oldStringMapModel: AndroidStringXmlModel, data: Array<ArrayList<Pair<Int, Int>>>) {
     ConflictSolveDialog(newStringMapModel, oldStringMapModel, data).visible()
 }
+
+fun routerConflictSolveDialog(newStringMapModel: AndroidStringXmlModel, oldStringMapModel: AndroidStringXmlModel, data: Array<ArrayList<Pair<Int, Int>>>, callback: ConflictSolveDialog.CallBack) {
+    ConflictSolveDialog(newStringMapModel, oldStringMapModel, data, callback).visible()
+}

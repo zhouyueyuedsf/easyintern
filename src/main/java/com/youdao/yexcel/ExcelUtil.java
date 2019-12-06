@@ -4,6 +4,7 @@ import com.intellij.openapi.ui.messages.MessageDialog;
 import com.intellij.util.messages.impl.Message;
 import com.youdao.model.ConfigModel;
 import com.youdao.model.TableDataModel;
+import com.youdao.ui.ConfigDialog;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 
@@ -16,6 +17,26 @@ import java.util.Vector;
 import java.util.concurrent.ExecutionException;
 
 public class ExcelUtil {
+
+    public static Vector<Vector<String>> readSpecialArea(String path, int startRow, int endRow, int startCol, int endCol, int sheetIndex) {
+        try {
+            Workbook workbook = WorkbookFactory.create(new FileInputStream(new File(path)));
+            return readExcel2VectorHandler(workbook, startCol, endCol, startRow, endRow, sheetIndex);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InvalidFormatException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Vector<String> readHead(ConfigModel configModel) {
+        Vector<Vector<String>> res = readSpecialArea(configModel.inputFilePath, configModel.headRowNum - 1, configModel.headRowNum - 1, configModel.validArea.startCol - 1, configModel.validArea.endCol - 1, configModel.sheetIndex);
+        if (res != null && res.size() > 0) {
+            return res.get(0);
+        }
+        return null;
+    }
     public static void readSpecialArea(ConfigModel configModel, ModelGenCallBack callBack) {
         TableDataModel keySettingTableModel = new TableDataModel();
         try {
@@ -53,7 +74,7 @@ public class ExcelUtil {
         long maxRow = sheet.getLastRowNum() > endRow ?
                 ((long) endRow) : sheet.getLastRowNum();
 
-        for (int i = startRow; i < maxRow; i++) {
+        for (int i = startRow; i < maxRow + 1; i++) {
             Vector<String> rows = new Vector<>();
             Row row = sheet.getRow(i);
             if (null == row)

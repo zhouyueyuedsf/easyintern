@@ -13,6 +13,7 @@ public class ConfigModel {
      */
     public int referColNum = 0;
     public boolean includeHead = true;
+    public int headRowNum = 1;
     public int sheetIndex = 0;
 
     public boolean checkModel() {
