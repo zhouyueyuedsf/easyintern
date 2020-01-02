@@ -151,7 +151,7 @@
           </component>
           <component id="12ef" class="javax.swing.JLabel">
             <constraints>
-              <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="结束列"/>
@@ -251,7 +251,7 @@
               <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="是否包含头"/>
+              <text value="起始行是否包含头"/>
             </properties>
           </component>
           <component id="811e9" class="javax.swing.JCheckBox" binding="checkBoxIncludeHead">
@@ -289,6 +289,26 @@
             </constraints>
             <properties>
               <text value="起始行"/>
+            </properties>
+          </component>
+          <component id="a0da7" class="javax.swing.JLabel" binding="JLableHeadColNum">
+            <constraints>
+              <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="请输入行号"/>
+            </properties>
+          </component>
+          <component id="1b582" class="javax.swing.JTextField" binding="textFiledHeadColNum">
+            <constraints>
+              <grid row="8" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="50" height="-1"/>
+                <preferred-size width="50" height="-1"/>
+                <maximum-size width="50" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="1"/>
             </properties>
           </component>
         </children>

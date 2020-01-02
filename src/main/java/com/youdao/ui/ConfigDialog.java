@@ -12,8 +12,11 @@ import com.youdao.util.RouterKt;
 import com.youdao.util.UIUtilKt;
 
 import javax.swing.*;
-import java.awt.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 public class ConfigDialog extends JDialog {
     private JPanel contentPane;
@@ -30,6 +33,8 @@ public class ConfigDialog extends JDialog {
     private TextFieldWithBrowseButton textFieldOutputFileChooser;
     private JCheckBox checkBoxIncludeHead;
     private JTextField textFieldSheetIndex;
+    private JLabel JLableHeadColNum;
+    private JTextField textFiledHeadColNum;
     private Project project;
     private ConfigModel configModel = new ConfigModel();
     public ConfigDialog() {
@@ -72,6 +77,18 @@ public class ConfigDialog extends JDialog {
         textFieldInputFileChooser.addBrowseFolderListener(new TextBrowseFolderListener(inputFileChooserDescriptor, project));
         FileChooserDescriptor outputFileChooserDescriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
         textFieldOutputFileChooser.addBrowseFolderListener(new TextBrowseFolderListener(outputFileChooserDescriptor, project));
+        checkBoxIncludeHead.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (checkBoxIncludeHead.isSelected()) {
+                    textFiledHeadColNum.hide();
+                    JLableHeadColNum.hide();
+                } else {
+                    textFiledHeadColNum.show();
+                    JLableHeadColNum.show();
+                }
+            }
+        });
     }
 
     private void onOK() {
@@ -87,6 +104,7 @@ public class ConfigDialog extends JDialog {
         configModel.referColNum = Integer.parseInt(textFieldEnglishCol.getText());
         configModel.includeHead = checkBoxIncludeHead.isSelected();
         configModel.sheetIndex = Integer.parseInt(textFieldSheetIndex.getText());
+        configModel.headRowNum = Integer.parseInt(textFiledHeadColNum.getText());
         if (configModel.checkModel()) {
             RouterKt.routerKeySettingDialog(configModel);
         } else {

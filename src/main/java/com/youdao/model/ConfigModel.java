@@ -13,6 +13,9 @@ public class ConfigModel {
      */
     public int referColNum = 0;
     public boolean includeHead = true;
+    /**
+     * 行号 默认为1
+     */
     public int headRowNum = 1;
     public int sheetIndex = 0;
 

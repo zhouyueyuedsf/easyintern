@@ -212,7 +212,7 @@ public class KeySettingDialog extends JDialog {
                 if ("en".equals(suffix)) {
                     suffix = "";
                 } else {
-                    suffix = "-" + suffix;
+                    suffix = "-" + suffix.trim();
                 }
                 File outFile = new File(outPutPath + "/values" + suffix + "/strings.xml");
                 String filledXmlString = getFilledXmlString(outputKeyVector, arrStartIndex, arrEndIndex, arrAnchorIndex, outValueVector);
@@ -263,7 +263,7 @@ public class KeySettingDialog extends JDialog {
                 continue;
             }
 
-            filledXmlStringBuilder.append(String.format("<string name = \"%s\">%s</string>\n",
+            filledXmlStringBuilder.append(String.format("<string name=\"%s\">%s</string>\n",
                     outputKeyVector.get(i), XmlUtil.INSTANCE.toTrim(outValueVector.get(i))));
 //                        FileUtils.write(outFile, String.format("<string key = \"%s\">%s</string>\n", outputKeyVector.get(i), outValueVector.get(i)).toString(),
 //                                Charset.defaultCharset(), true);
