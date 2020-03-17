@@ -78,7 +78,7 @@
               <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="StartCol"/>
+              <text value="起始列"/>
             </properties>
           </component>
           <component id="12f39" class="javax.swing.JLabel">
@@ -122,15 +122,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="0"/>
-            </properties>
-          </component>
-          <component id="2ed35" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="StartRow"/>
+              <text value="1"/>
             </properties>
           </component>
           <component id="111a3" class="javax.swing.JTextField" binding="textFieldStartCol">
@@ -142,7 +134,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="0"/>
+              <text value="1"/>
             </properties>
           </component>
           <component id="3a22c" class="javax.swing.JTextField" binding="textFieldStartRow">
@@ -154,15 +146,15 @@
               </grid>
             </constraints>
             <properties>
-              <text value="0"/>
+              <text value="1"/>
             </properties>
           </component>
           <component id="12ef" class="javax.swing.JLabel">
             <constraints>
-              <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="EndCol"/>
+              <text value="结束列"/>
             </properties>
           </component>
           <component id="4b97a" class="javax.swing.JLabel">
@@ -170,7 +162,7 @@
               <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="EndRow"/>
+              <text value="结束行"/>
             </properties>
           </component>
           <component id="e7ece" class="javax.swing.JLabel">
@@ -178,7 +170,7 @@
               <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="StartRow"/>
+              <text value="起始行"/>
             </properties>
           </component>
           <component id="b856" class="javax.swing.JTextField" binding="textFieldSubStartRow">
@@ -190,7 +182,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="0"/>
+              <text value="1"/>
             </properties>
           </component>
           <component id="26675" class="javax.swing.JLabel">
@@ -198,7 +190,7 @@
               <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="EndRow"/>
+              <text value="结束行"/>
             </properties>
           </component>
           <component id="fa0f2" class="javax.swing.JTextField" binding="textFieldEndCol">
@@ -210,7 +202,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="0"/>
+              <text value="1"/>
             </properties>
           </component>
           <component id="f2e9c" class="javax.swing.JTextField" binding="textFieldEndRow">
@@ -222,7 +214,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="0"/>
+              <text value="1"/>
             </properties>
           </component>
           <component id="7f5ed" class="javax.swing.JTextField" binding="textFieldSubEndRow">
@@ -234,7 +226,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="0"/>
+              <text value="1"/>
             </properties>
           </component>
           <hspacer id="72610">
@@ -259,7 +251,7 @@
               <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="是否包含头"/>
+              <text value="起始行是否包含头"/>
             </properties>
           </component>
           <component id="811e9" class="javax.swing.JCheckBox" binding="checkBoxIncludeHead">
@@ -268,7 +260,7 @@
             </constraints>
             <properties>
               <selected value="true"/>
-              <text value="CheckBox"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="6a341" class="javax.swing.JLabel">
@@ -289,6 +281,34 @@
             </constraints>
             <properties>
               <text value="0"/>
+            </properties>
+          </component>
+          <component id="2ed35" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="起始行"/>
+            </properties>
+          </component>
+          <component id="a0da7" class="javax.swing.JLabel" binding="JLableHeadColNum">
+            <constraints>
+              <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="请输入行号"/>
+            </properties>
+          </component>
+          <component id="1b582" class="javax.swing.JTextField" binding="textFiledHeadColNum">
+            <constraints>
+              <grid row="8" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="50" height="-1"/>
+                <preferred-size width="50" height="-1"/>
+                <maximum-size width="50" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="1"/>
             </properties>
           </component>
         </children>

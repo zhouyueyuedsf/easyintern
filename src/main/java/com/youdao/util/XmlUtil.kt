@@ -1,16 +1,33 @@
 package com.youdao.util
 
 import com.youdao.model.AndroidStringXmlModel
+import com.youdao.model.Student
 import java.io.File
 import java.io.FileInputStream
+import java.io.FileOutputStream
 import java.io.StringReader
+import java.lang.Boolean
 import javax.xml.bind.JAXBContext
+import javax.xml.bind.Marshaller
+import kotlin.math.max
 import kotlin.math.min
 
 
 object XmlUtil {
-    private const val BASE_LIKE_RATIO_OFFSET = 0.25f
-    const val BASE_LIKE_RATIO = 1 - BASE_LIKE_RATIO_OFFSET
+    private const val BASE_LIKE_RATIO_OFFSET = 0.1f
+    private const val BASE_LIKE_RATIO = 1 - BASE_LIKE_RATIO_OFFSET
+
+    fun writeModelToXml(model: AndroidStringXmlModel?, path: String, append: kotlin.Boolean) { // 获取JAXB的上下文环境，需要传入具体的 Java bean -> 这里使用Student
+        val context = JAXBContext.newInstance(AndroidStringXmlModel::class.java)
+        // 创建 Marshaller 实例
+        val marshaller = context.createMarshaller()
+        // 设置转换参数 -> 这里举例是告诉序列化器是否格式化输出
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE)
+        // 构建输出环境
+        val out = FileOutputStream(path, append)
+        // 将所需对象序列化 -> 该方法没有返回值
+        marshaller.marshal(model, out)
+    }
     fun readStringsXmlByPath(path: String): AndroidStringXmlModel {
         val mJaxb = JAXBContext.newInstance(AndroidStringXmlModel::class.java)
         val unmarshaller = mJaxb.createUnmarshaller()
@@ -43,11 +60,16 @@ object XmlUtil {
                 val oldName = oldStringMapModelList[oldPos].name
                 val oldValue = oldStringMapModelList[oldPos].value
                 var ratio = 0f
+                // 如果值一样，就采用old的name
+                val valueLikeRatio = like(newValue, oldValue)
+                if (valueLikeRatio == 1f) {
+                    continue
+                }
                 if (like(newName, oldName).also { ratio = it } > BASE_LIKE_RATIO) {
                     stringPosPairList.add(Pair(newPos, oldPos))
                 } else {
                     // value和key的相似度要求成反关系
-                    if (like(newValue, oldValue) > (1 - ratio)) {
+                    if (valueLikeRatio > max(1 - ratio, BASE_LIKE_RATIO)) {
                         stringPosPairList.add(Pair(newPos, oldPos))
                     } else {
                         tempStringModelList.add(newStringMapModelList[newPos])
