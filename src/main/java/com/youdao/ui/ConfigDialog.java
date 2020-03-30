@@ -45,7 +45,7 @@ public class ConfigDialog extends JDialog {
         setContentPane(contentPane);
         UIUtilKt.center(this, 469, 360);
         setModal(true);
-        setTitle("配置");
+        setTitle("Config Dialog");
         getRootPane().setDefaultButton(buttonNext);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         initListener();

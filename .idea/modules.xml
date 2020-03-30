@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/easyintern.iml" filepath="$PROJECT_DIR$/.idea/modules/easyintern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/easyintern.main.iml" filepath="$PROJECT_DIR$/.idea/modules/easyintern.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/easyintern.test.iml" filepath="$PROJECT_DIR$/.idea/modules/easyintern.test.iml" />
+    </modules>
+  </component>
+</project>

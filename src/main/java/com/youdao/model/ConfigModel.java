@@ -9,12 +9,12 @@ public class ConfigModel {
     public Rect validArea = new Rect();
     public Rect stringArrayArea = new Rect();
     /**
-     * 在excel中的参照列号
+     * excel reference col num, such as english num
      */
     public int referColNum = 0;
     public boolean includeHead = true;
     /**
-     * 行号 默认为1
+     * line number default = 1
      */
     public int headRowNum = 1;
     public int sheetIndex = 0;

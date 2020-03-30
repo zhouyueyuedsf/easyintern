@@ -17,7 +17,10 @@ compileKotlin {
 }
 
 intellij {
-    version '2019.2.4'
+    version '2019.2'
+    type 'IU'              // Use IntelliJ IDEA CE because it's the basis of the IntelliJ Platform
+//    // Require the Android plugin, Gradle will match the plugin version to intellij.version
+    plugins 'android'
 }
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
@@ -35,7 +38,5 @@ dependencies {
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 
 patchPluginXml {
-    changeNotes """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
+    changeNotes """an easy plugin of intern text, try it and enjoy it"""
 }

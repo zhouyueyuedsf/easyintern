@@ -40,7 +40,7 @@ public class ConflictSolveDialog extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         UIUtilKt.center(this, 402, 214);
-        setTitle("冲突解决对话框");
+        setTitle("ConflictSolve Dialog");
         mNewAndroidStringXmlModel = newAndroidStringXmlModel;
         mOldAndroidStringXmlModel = oldAndroidStringXmlModel;
         mPosDatas = datas;

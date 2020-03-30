@@ -80,7 +80,7 @@ public class ExcelUtil {
             if (null == row)
                 continue;
             long maxCol = row.getLastCellNum() > endCol ? endCol : row.getLastCellNum();
-            for (int j = startCol; j < maxCol; j++) {
+            for (int j = startCol; j <= maxCol; j++) {
                 String val = Converter.getCellValue(row.getCell(j));
                 rows.add(val);
             }

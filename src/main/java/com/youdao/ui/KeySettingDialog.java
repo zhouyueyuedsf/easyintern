@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -72,7 +73,8 @@ public class KeySettingDialog extends JDialog {
             }
             abbrMap.put(name, abbr);
         }
-        // 转置后和headNameRow一一对应
+
+        // 转置
         Vector<Vector<String>> transposedData = new Vector<>();
         transposed(rawData, transposedData);
         int colNum = headNameRow.size();
@@ -223,7 +225,7 @@ public class KeySettingDialog extends JDialog {
                     AndroidStringXmlModel oldAndroidStringXmlModel = XmlUtil.INSTANCE.readStringsXmlByPath(outFile.getPath());
                     ArrayList<Pair<Integer, Integer>> datas[] = XmlUtil.INSTANCE.syncXmlModelAndReturnUnAppendData(newAndroidStringXmlModel, oldAndroidStringXmlModel, outFile);
                     final ArrayList<Pair<Integer, Integer>> stringConflictPosInfo = datas[0];
-                    // 进行新旧比较的算法
+                    // 你好
                     RouterKt.routerConflictSolveDialog(newAndroidStringXmlModel, oldAndroidStringXmlModel, datas, new ConflictSolveDialog.CallBack() {
                         @Override
                         public void onOK(JDialog dialog, AndroidStringXmlModel outputModel) {
@@ -233,7 +235,7 @@ public class KeySettingDialog extends JDialog {
                 } else {
                     try {
                         FileUtils.write(outFile, filledXmlString,
-                                Charset.defaultCharset(), false);
+                                StandardCharsets.UTF_8, false);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

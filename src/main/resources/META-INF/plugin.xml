@@ -1,5 +1,5 @@
 <idea-plugin>
-  <id>com.your.company.unique.plugin.id</id>
+  <id>com.joy.easyIntern</id>
   <name>easy intern</name>
   <version>1.0</version>
   <vendor email="zhouyueyue1@rd.netease.com" url="http://www.163.com">netease</vendor>
@@ -9,7 +9,8 @@
   <change-notes>an easy plugin of intern text, try it and enjoy it</change-notes>
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-  <idea-version since-build="173.0"/>
+  <idea-version since-build="IU-162.0" until-build="IU-201.*"/>
+
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
        on how to target different products -->
@@ -20,6 +21,9 @@
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
   </extensions>
+  <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.modules.lang</depends>
+  <depends>com.intellij.modules.androidstudio</depends>
 
   <actions>
     <!-- Add your actions here -->
