@@ -1,13 +1,12 @@
 package com.youdao.ui;
 
 import com.intellij.ui.components.JBList;
-import com.intellij.ui.components.JBPanel;
 import com.intellij.ui.components.JBTextField;
 import com.youdao.adapter.ConflictListAdapter;
 import com.youdao.model.AndroidStringXmlModel;
 import com.youdao.util.UIUtilKt;
 import kotlin.Pair;
-import org.jsoup.helper.StringUtil;
+import kotlin.text.StringsKt;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -89,7 +88,7 @@ public class ConflictSolveDialog extends JDialog {
         int index = listInfo.getSelectedIndex();
         int oldPos = indexToOldPos(index);
         mOldAndroidStringXmlModel.getStringMapModelList().get(oldPos).setName(name);
-        if (!StringUtil.isBlank(value)) {
+        if (!StringsKt.isBlank(value)) {
             mOldAndroidStringXmlModel.getStringMapModelList().get(oldPos).setValue(value);
         }
     }
@@ -97,7 +96,7 @@ public class ConflictSolveDialog extends JDialog {
     private void initListener() {
         buttonOk.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // 替换，用新值去替换旧值
+                // new value replace
                 setOldName(textFieldOldName.getText(), textFieldOldValue.getText());
             }
         });

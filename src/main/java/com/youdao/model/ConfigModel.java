@@ -1,7 +1,7 @@
 package com.youdao.model;
 
 
-import org.jsoup.helper.StringUtil;
+import kotlin.text.StringsKt;
 
 public class ConfigModel {
     public String outFilePath;
@@ -20,6 +20,6 @@ public class ConfigModel {
     public int sheetIndex = 0;
 
     public boolean checkModel() {
-        return !StringUtil.isBlank(outFilePath) && !StringUtil.isBlank(inputFilePath) && validArea.checkModel() && stringArrayArea.checkModel() && validArea.startCol <= referColNum;
+        return !StringsKt.isBlank(outFilePath) && !StringsKt.isBlank(inputFilePath) && validArea.checkModel() && stringArrayArea.checkModel() && validArea.startCol <= referColNum;
     }
 }
