@@ -43,7 +43,7 @@ object XmlUtil {
         val model = unmarshaller.unmarshal(stream) as AndroidStringXmlModel
         return model
     }
-    fun String.toTrim() = replace("&", "&amp;").replace(" ", "&#160;")
+    fun String.toTrim() = replace("&", "&amp;")
 
     fun syncXmlModelAndReturnUnAppendData(newStringXmlModel: AndroidStringXmlModel, oldStringXmlModel: AndroidStringXmlModel, outFile: File): Array<ArrayList<Pair<Int, Int>>> {
         // 记录未append的数据的位置信息，第一个为newPosition，第二个个oldPos

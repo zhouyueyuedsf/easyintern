@@ -9,7 +9,7 @@
   <change-notes>an easy plugin of intern text, try it and enjoy it</change-notes>
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-  <idea-version since-build="192.5798" until-build="193.*"/>
+  <idea-version since-build="192.5798" until-build="201.*"/>
 
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
@@ -22,6 +22,7 @@
     <!-- Add your extensions here -->
   </extensions>
   <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.modules.androidstudio</depends>
   <depends>com.intellij.modules.lang</depends>
 
   <actions>

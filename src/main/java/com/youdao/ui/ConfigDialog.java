@@ -10,6 +10,7 @@ import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.youdao.model.ConfigModel;
 import com.youdao.util.RouterKt;
 import com.youdao.util.UIUtilKt;
+import com.youdao.util.Utils;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -95,13 +96,13 @@ public class ConfigDialog extends JDialog {
         // add your code here
         configModel.outFilePath = textFieldOutputFileChooser.getText();
         configModel.inputFilePath = textFieldInputFileChooser.getText();
-        configModel.validArea.startCol = Integer.parseInt(textFieldStartCol.getText());
-        configModel.validArea.endCol = Integer.parseInt(textFieldEndCol.getText());
+        configModel.validArea.startCol = Utils.excelColNameToNumber(textFieldStartCol.getText());
+        configModel.validArea.endCol = Utils.excelColNameToNumber(textFieldEndCol.getText());
         configModel.validArea.startRow = Integer.parseInt(textFieldStartRow.getText());
         configModel.validArea.endRow = Integer.parseInt(textFieldEndRow.getText());
         configModel.stringArrayArea.startRow = Integer.parseInt(textFieldSubStartRow.getText());
         configModel.stringArrayArea.endRow = Integer.parseInt(textFieldSubEndRow.getText());
-        configModel.referColNum = Integer.parseInt(textFieldEnglishCol.getText());
+        configModel.referColNum = Utils.excelColNameToNumber(textFieldEnglishCol.getText());
         configModel.includeHead = checkBoxIncludeHead.isSelected();
         configModel.sheetIndex = Integer.parseInt(textFieldSheetIndex.getText());
         configModel.headRowNum = Integer.parseInt(textFiledHeadColNum.getText());

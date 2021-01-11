@@ -2,6 +2,7 @@ package com.youdao.yexcel;
 
 
 
+import jdk.internal.jline.internal.Nullable;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellValue;
 import org.apache.poi.ss.usermodel.DateUtil;
@@ -20,7 +21,8 @@ public class Converter {
      * @param c 单元格
      * @return 单元格内容
      */
-    public static String getCellValue(Cell c) {
+    public static String getCellValue(@Nullable Cell c) {
+        if (c == null) return "";
         String o;
         switch (c.getCellType()) {
             case Cell.CELL_TYPE_BLANK:

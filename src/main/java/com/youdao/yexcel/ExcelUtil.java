@@ -1,7 +1,6 @@
 package com.youdao.yexcel;
 
 import com.intellij.openapi.ui.messages.MessageDialog;
-import com.intellij.util.messages.impl.Message;
 import com.youdao.model.ConfigModel;
 import com.youdao.model.TableDataModel;
 import com.youdao.ui.ConfigDialog;
