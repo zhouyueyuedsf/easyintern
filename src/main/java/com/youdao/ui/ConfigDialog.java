@@ -36,6 +36,7 @@ public class ConfigDialog extends JDialog {
     private JTextField textFieldSheetIndex;
     private JLabel JLableHeadColNum;
     private JTextField textFiledHeadColNum;
+    private JLabel isContainHead;
     private Project project;
     private ConfigModel configModel = new ConfigModel();
     public ConfigDialog() {
